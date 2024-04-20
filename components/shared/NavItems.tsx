@@ -15,7 +15,7 @@ const NavItems = () => {
             const isActive = pathname === link.route;
 
             return (
-                <li key={link.route} className={`flex-center p-medium-16 whitespace-nowrap ${isActive && 'text-primary-500'}`}>
+                <li key={link.route} className={`flex-center p-medium-16 whitespace-nowrap ${isActive && 'text-primary-500 border-b-2 border-black'}`}>
                     <Link href={link.route} >{link.label}</Link>
                 </li>
             )
