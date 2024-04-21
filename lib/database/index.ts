@@ -1,6 +1,6 @@
 //This file is necessary for the connection of MongoDB 
 
-import mongoose, { Error } from  'mongoose';
+import mongoose from  'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI; // Connecting to MongoDB URI with password
 
@@ -23,5 +23,5 @@ export const connectToDatabase = async() => {
 
     cached.connection = await cached.promise;
 
-    return cached.conn;
+    return cached.connection;
 }

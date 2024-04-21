@@ -1,5 +1,5 @@
 // Requiring Schema model from Mongoose 
-import { Schema, model, models } from "mongoose"
+import { Schema, model, models } from "mongoose";
 
 
 // Settin up the User Schema
