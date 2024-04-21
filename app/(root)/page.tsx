@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,8 +41,8 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="scale scale-150 border-black border-4"/>
+              <CarouselNext className="scale scale-150 border-black border-4"/>
             </Carousel>
 
             {/* Hero Section Desc */}
@@ -57,7 +58,7 @@ export default function Home() {
             </div>
 
             {/* Hero Section Explore Button */}
-            <Button className="bg-black font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-primary hover:text-blac">
+            <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary">
               <Link href="#events">
                 Explore Now
               </Link>
