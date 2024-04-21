@@ -19,7 +19,7 @@ export interface IEvent extends Document{
 }
 
 
-// Settin up the User Schema
+// Settin up the Event Schema
 const EventSchema = new Schema({
     title: {
         type: String,
@@ -79,6 +79,6 @@ const EventSchema = new Schema({
 })
 
 // Exporting the EventSchema 
-const Event = models.Event || model('User', EventSchema) // Use existing Model if got,if not create a new Model
+const Event = models.Event || model('Event', EventSchema) // Use existing Model if got,if not create a new Model
 
 export default Event;
