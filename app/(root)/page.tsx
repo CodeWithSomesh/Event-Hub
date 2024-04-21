@@ -15,7 +15,7 @@ import { eventImages } from "@/constants";
 export default function Home() {
   return (
     <>
-        <section className="bg-primary-50 bg-contain py-5 md:py-8">
+        <section className="bg-primary-50 bg-contain py-5 md:py-10">
 
           <div className="wrapper grid gap-5 2xl:gap-0">
 
@@ -23,7 +23,14 @@ export default function Home() {
             <div className="">
               <h1 className="h1-bold text-center">Your Passport to Events Worldwide</h1>
               <h1 className="h1-bold text-center text-primary">— Discover. Experience. Connect.</h1>
-            </div>            
+            </div>
+
+            {/* Hero Section Desc */}
+            <div className="text-center">
+              <p className="p-semibold-18 md:p-semibold-20">Life's too short for boring weekends.</p>
+              <p className="p-semibold-18 md:p-semibold-20">Dive into a world of events, buy tickets, or become the ultimate host.</p>  
+            </div>
+            
 
             {/* Carousel Slider */}
             <Carousel>
@@ -44,14 +51,9 @@ export default function Home() {
               <CarouselNext />
             </Carousel>
 
-            {/* Hero Section Desc */}
-            <div className="">
-              <p className="p-semibold-18 md:p-semibold-20">Life's too short for boring weekends.</p>
-              <p className="p-semibold-18 md:p-semibold-20">Dive into a world of events, buy tickets, or become the ultimate host.</p>  
-            </div>
 
             {/* Hero Section Desc */}
-            <div className="text-right">
+            <div className="text-center">
               <p className="p-semibold-18 md:p-semibold-20">From concerts to conferences, find your next adventure here.</p>
               <p className="p-semibold-18 md:p-semibold-20">Let's make memories, starting now!</p>
             </div>
