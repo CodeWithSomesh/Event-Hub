@@ -38,7 +38,8 @@ const UserSchema = new Schema({
     },
 })
 
-// Exporting the UserSchema 
+
 const User = models.User || model('User', UserSchema) // Use existing Model if got,if not create a new Model
+
 
 export default User;
