@@ -33,7 +33,7 @@ export default function Home() {
                   <CarouselItem key={event.src} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1">
                       <Card>
-                        <CardContent className="flex aspect-square p-6 bg-primary-200 rounded-md">
+                        <CardContent className="flex aspect-square p-6 border-4 border-black rounded-md">
                           <Image src={event.src} alt="Event Images" width={1000} height={1000} className="object-cover object-bottom rounded-md"/>
                         </CardContent>
                       </Card>
@@ -41,8 +41,8 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="scale scale-150 border-black border-4"/>
-              <CarouselNext className="scale scale-150 border-black border-4"/>
+              <CarouselPrevious className="scale scale-150 border-primary border-4"/>
+              <CarouselNext className="scale scale-150 border-primary border-4"/>
             </Carousel>
 
             {/* Hero Section Desc */}

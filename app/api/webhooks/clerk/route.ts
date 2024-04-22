@@ -1,6 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
-import { WebhookEvent, clerkClient } from '@clerk/nextjs/server'
+import { WebhookEvent } from '@clerk/nextjs/server'
+import { clerkClient } from "@clerk/clerk-sdk-node"
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { NextResponse } from 'next/server'
  
@@ -57,7 +58,7 @@ export async function POST(req: Request) {
   console.log('Webhook body:', body)
 
   if(eventType === 'user.created'){
-    const {id, email_addresses, image_url, first_name, last_name, username} = evt.data
+    const {id, email_addresses, image_url, first_name, last_name, username, password_enabled} = evt.data
 
     const user = {
       clerkId: id, 
@@ -65,9 +66,9 @@ export async function POST(req: Request) {
       username: username!,
       firstName: first_name!,
       lastName: last_name!,
+      password: password_enabled,
       photo: image_url,
     }
-
     const newUser = await createUser(user);
 
     // If new user created, then keep the MongoDB id of the user under Metadata
