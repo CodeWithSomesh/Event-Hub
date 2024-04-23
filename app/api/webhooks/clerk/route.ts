@@ -1,7 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
-import { clerkClient } from '@clerk/nextjs'
-import { WebhookEvent } from '@clerk/nextjs/server'
+import { WebhookEvent} from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { NextResponse } from 'next/server'
  
@@ -61,7 +60,7 @@ export async function POST(req: Request) {
     const {id, email_addresses, image_url, first_name, last_name, username} = evt.data
 
     const user = {
-      clerkId: id, 
+      clerkID: id, 
       email: email_addresses[0].email_address,
       username: username!,
       firstName: first_name!,
@@ -72,13 +71,7 @@ export async function POST(req: Request) {
     const newUser = await createUser(user);
 
     // If new user created, then keep the MongoDB id of the user under Metadata
-    if(newUser){
-      await clerkClient.users.updateUserMetadata(id, { //Making Clerk connect with MongoDB
-        publicMetadata: {
-          userId: newUser._id,
-        }
-      })
-    }
+    console.log("The problem is w the fucking clerkClient shit")
 
     return NextResponse.json({message: 'New User Created', user: newUser})
   }
