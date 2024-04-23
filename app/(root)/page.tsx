@@ -18,7 +18,7 @@ export default function Home() {
     <>
         <section className="bg-primary-50 bg-contain py-5 md:py-8">
 
-          <div className="wrapper grid gap-5 2xl:gap-0">
+          <div className="wrapper grid gap-5">
 
             {/* Hero Section Title */}
             <div className="">

@@ -1,7 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
+import { clerkClient } from '@clerk/nextjs'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { clerkClient } from "@clerk/clerk-sdk-node"
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { NextResponse } from 'next/server'
  
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
   console.log('Webhook body:', body)
 
   if(eventType === 'user.created'){
-    const {id, email_addresses, image_url, first_name, last_name, username, password_enabled} = evt.data
+    const {id, email_addresses, image_url, first_name, last_name, username} = evt.data
 
     const user = {
       clerkId: id, 
@@ -66,21 +66,21 @@ export async function POST(req: Request) {
       username: username!,
       firstName: first_name!,
       lastName: last_name!,
-      password: password_enabled,
       photo: image_url,
     }
+    console.log(user)
     const newUser = await createUser(user);
 
     // If new user created, then keep the MongoDB id of the user under Metadata
     if(newUser){
       await clerkClient.users.updateUserMetadata(id, { //Making Clerk connect with MongoDB
         publicMetadata: {
-          userId: newUser._id
+          userId: newUser._id,
         }
       })
     }
 
-    return NextResponse.json({message: 'OK', user: newUser})
+    return NextResponse.json({message: 'New User Created', user: newUser})
   }
 
   if(eventType === 'user.updated'){
@@ -95,7 +95,7 @@ export async function POST(req: Request) {
 
     const updatedUser = await updateUser(id, user);
 
-    return NextResponse.json({message: 'OK', user: updatedUser})
+    return NextResponse.json({message: 'User Details Updated', user: updatedUser})
   }
 
   if(eventType === 'user.deleted'){
@@ -103,7 +103,7 @@ export async function POST(req: Request) {
 
     const deletedUser = await deleteUser(id!);
 
-    return NextResponse.json({message: 'OK', user: deletedUser})
+    return NextResponse.json({message: 'User Deleted', user: deletedUser})
   }
  
   return new Response('', { status: 200 })
