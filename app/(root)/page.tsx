@@ -16,9 +16,9 @@ import { eventImages } from "@/constants";
 export default function Home() {
   return (
     <>
-        <section className="bg-primary-50 bg-contain py-5 md:py-8">
+        <section className="bg-primary-50 bg-contain py-5 md:py-8 w-full">
 
-          <div className="wrapper grid gap-5">
+          <div className="wrapper grid gap-5 ">
 
             {/* Hero Section Title */}
             <div className="">
@@ -33,7 +33,7 @@ export default function Home() {
                   <CarouselItem key={event.src} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1">
                       <Card>
-                        <CardContent className="flex aspect-square p-6 border-4 border-black rounded-md">
+                        <CardContent className="flex aspect-square p-6 border-2 border-black rounded-md">
                           <Image src={event.src} alt="Event Images" width={1000} height={1000} className="object-cover object-bottom rounded-md"/>
                         </CardContent>
                       </Card>
@@ -58,7 +58,7 @@ export default function Home() {
             </div>
 
             {/* Hero Section Explore Button */}
-            <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary">
+            <Button className="bg-black text-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-primary hover:text-black">
               <Link href="#events">
                 Explore Now
               </Link>
