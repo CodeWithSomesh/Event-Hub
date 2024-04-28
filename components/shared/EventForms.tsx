@@ -75,6 +75,7 @@ const EventForms = ({userId, type}: EventFormProps) => {
         })
         console.log('hi 3')
         if(newEvent){
+          console.log('new event almost created in database')
           form.reset()
           router.push(`/events/${newEvent._id}`)
         }
