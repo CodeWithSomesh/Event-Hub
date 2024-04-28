@@ -18,6 +18,7 @@ export const connectToDatabase = async() => {
         //if not start a connection using mongoose 
         dbName: 'EventHub',
         bufferCommands: false,
+        connectTimeoutMS: 50000, // Set the connection timeout to 50 seconds 
     })
 
     cached.connection = await cached.promise;
