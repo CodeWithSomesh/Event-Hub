@@ -12,7 +12,7 @@ let cached = (global as any).mongoose || {connection: null, promise: null}
 export const connectToDatabase = async() => {
     if (cached.connection) return cached.connection; // if there is aalready a connection then return the connection
 
-    if(!MONGODB_URI) throw new Error('MONGODB_URI is missing'); //if there is no MONGO_URI then this error message will be displayed 
+    if(!MONGODB_URI) throw new Error('MONGODB_URI is missing'); //if there is no MONGODB_URI then this error message will be displayed 
     cached.promise = cached.promise || mongoose.connect(MONGODB_URI, { 
         //if there is aalready a connection then return the connection, 
         //if not start a connection using mongoose 
