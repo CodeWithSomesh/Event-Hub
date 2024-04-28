@@ -18,6 +18,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import { Input } from "../ui/input";
   
   
 
@@ -28,10 +29,12 @@ type DropdownProps = {
 
 const Dropdown = ({value, onChangeHandler}: DropdownProps) => {
 
-  const [categories, setCategories] = useState<ICategory[]>([
-    {_id: '1', name: 'Festival'},
-    {_id: '2', name: 'Competition'}
-  ])
+  const [categories, setCategories] = useState<ICategory[]>([])
+  const [newCategory, setNewCategory] = useState('')
+
+  const handleAddCategory = () => {
+
+  }
 
   return (
     <Select onValueChange={onChangeHandler} defaultValue={value}>
@@ -46,18 +49,21 @@ const Dropdown = ({value, onChangeHandler}: DropdownProps) => {
             ))}
 
             <AlertDialog>
-            <AlertDialogTrigger>Open</AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary hover:bg-primary-50 focus:text-primary">
+              Open
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-white">
                 <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogTitle>New Category</AlertDialogTitle>
                 <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
+                    <Input type="text" placeholder="Category Name" 
+                      className="input-field mt-3" onChange={e => setNewCategory(e.target.value)}
+                    />
                 </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
+                <AlertDialogAction onClick={() => handleAddCategory}>Add</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
             </AlertDialog>

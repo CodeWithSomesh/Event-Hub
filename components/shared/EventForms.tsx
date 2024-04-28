@@ -17,6 +17,10 @@ import { Input } from "@/components/ui/input"
 import { eventFormSchema } from "@/lib/validator"
 import { eventDefaultValues } from "@/constants"
 import Dropdown from "./Dropdown"
+import { Textarea } from "@/components/ui/textarea"
+import FileUploader from "./FileUploader"
+import { useState } from "react"
+
  
 
 type EventFormProps = {
@@ -26,6 +30,7 @@ type EventFormProps = {
 
 const EventForms = ({userId, type}: EventFormProps) => {
   
+  const [files, setFiles] = useState<File[]>([])
   const initialValues = eventDefaultValues;
 
   // 1. Define your form.
@@ -86,8 +91,53 @@ const EventForms = ({userId, type}: EventFormProps) => {
             />
         </div>
 
+        <div className="flex flex-col gap-5 md:flex-row">
+            
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+                <FormItem className="w-full">
+                <FormLabel>Event Title</FormLabel>
+                <FormControl className="h-72">
+                    <Textarea 
+                        placeholder="Event Description (eg: Dancing Queens Ballet Dance Show 2024 ...)" 
+                        className="textarea rounded-2xl"
+                        {...field} 
+                    />
+                </FormControl>
+                <FormDescription>
+                    This is your Event display name.
+                </FormDescription>
+                <FormMessage />
+                </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="imageUrl"
+            render={({ field }) => (
+                <FormItem className="w-full">
+                <FormLabel>Event Title</FormLabel>
+                <FormControl className="h-72">
+                    <FileUploader 
+                      onFieldChange = {field.onChange}
+                      imageurl={field.value}
+                      setFiles={setFiles}
+                    />
+                </FormControl>
+                <FormDescription>
+                    This is your Event display name.
+                </FormDescription>
+                <FormMessage />
+                </FormItem>
+            )}
+          />
+        </div>
+
         
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary">Submit</Button>
       </form>
     </Form>
   )
