@@ -18,7 +18,7 @@ import { eventFormSchema } from "@/lib/validator"
 import { eventDefaultValues } from "@/constants"
 import Dropdown from "./Dropdown"
 import { Textarea } from "@/components/ui/textarea"
-import FileUploader from "./FileUploader"
+import { FileUploader } from "./FileUploader"
 import { useState } from "react"
 
  
@@ -75,7 +75,7 @@ const EventForms = ({userId, type}: EventFormProps) => {
 
             <FormField
                 control={form.control}
-                name="category"
+                name="categoryId"
                 render={({ field }) => (
                     <FormItem className="w-full">
                     <FormLabel>Event Category</FormLabel>
@@ -123,7 +123,7 @@ const EventForms = ({userId, type}: EventFormProps) => {
                 <FormControl className="h-72">
                     <FileUploader 
                       onFieldChange = {field.onChange}
-                      imageurl={field.value}
+                      imageUrl={field.value}
                       setFiles={setFiles}
                     />
                 </FormControl>
