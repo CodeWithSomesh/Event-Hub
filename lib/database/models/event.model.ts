@@ -1,5 +1,5 @@
 // Requiring Schema model from Mongoose 
-import { Document, Schema, model, models } from "mongoose"
+import { Document, Model, Schema, model, models } from "mongoose"
 
 // Defining the types using Typescript 
 export interface IEvent extends Document{
@@ -79,6 +79,12 @@ const EventSchema = new Schema({
 })
 
 // Exporting the EventSchema 
-const Event = models.Event || model('Event', EventSchema) // Use existing Model if got,if not create a new Model
+let Event: Model<IEvent> = model<IEvent>('Event', EventSchema); // Default initialization
+
+try {
+    Event = models["Event"] || Event;
+} catch (error) {
+    console.error("Error in retrieving or creating Event model:", error);
+}
 
 export default Event;
