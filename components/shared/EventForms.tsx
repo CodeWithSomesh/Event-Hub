@@ -61,22 +61,24 @@ const EventForms = ({userId, type}: EventFormProps) => {
       if(!uploadedImages){
         return
       }
-
+      console.log('hi')
       uploadedImageUrl = uploadedImages[0].url
     }
 
     if(type === 'Publish'){
       try {
+        console.log('hi 2')
         const newEvent = await createEvent({
           event: {...values, imageUrl: uploadedImageUrl},
           userId, 
           path: '/profile'
         })
-
+        console.log('hi 3')
         if(newEvent){
           form.reset()
           router.push(`/events/${newEvent._id}`)
         }
+        console.log('new event not created in database')
       } catch (error) {
         console.log(error)
       }
