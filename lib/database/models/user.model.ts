@@ -40,15 +40,6 @@ const UserSchema = new Schema({
 
 
 // Exporting the EventSchema 
-let User = model('User', UserSchema); // Default initialization
-
-try {
-    // Try to retrieve existing model, otherwise create a new one
-    User = models["User"] || User;
-} catch (error) {
-    // If there's an error, log it
-    console.error("Error in retrieving or creating User model:", error);
-} 
-
+const User = models.User || model('User', UserSchema);
 
 export default User;
