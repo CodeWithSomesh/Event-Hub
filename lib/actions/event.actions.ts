@@ -10,12 +10,15 @@ export const createEvent = async ({event, userId, path}: CreateEventParams) => {
     try{
         //Connect to the Database
         await connectToDatabase();
+        console.log('hello 1')
         // Finding who published this event 
         const organizer =  await User.findById(userId)
         if(!organizer){
             throw new Error("Organizer not found");
+            console.log('hello 2')
         }
         const newEvent = await Event.create({...event, category: event.categoryId, organizer: userId})
+        console.log('hello 3')
         //revalidatePath(path)
 
         return JSON.parse(JSON.stringify(newEvent));
