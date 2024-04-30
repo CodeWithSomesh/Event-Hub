@@ -21,7 +21,7 @@ export interface IEvent extends Document{
 
 // Settin up the Event Schema
 const EventSchema = new Schema({
-    title: {
+    eventTitle: {
         type: String,
         required: true,
     },
@@ -39,7 +39,7 @@ const EventSchema = new Schema({
         default: Date.now
     },
 
-    imageURL: {
+    imageUrl: {
         type: String,
         required: true,
     },
