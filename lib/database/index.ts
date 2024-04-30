@@ -14,7 +14,7 @@ export const connectToDatabase = async() => {
 
     if(!MONGODB_URI) throw new Error('MONGODB_URI is missing'); //if there is no MONGODB_URI then this error message will be displayed 
     cached.promise = cached.promise || mongoose.connect(MONGODB_URI, { 
-        //if there is aalready a connection then return the connection, 
+        //if there is already a connection then return the connection, 
         //if not start a connection using mongoose 
         dbName: 'EventHub',
         bufferCommands: false,
@@ -22,6 +22,7 @@ export const connectToDatabase = async() => {
     })
 
     cached.connection = await cached.promise;
-
+    console.log('Connected to MongoDB')
+    
     return cached.connection;
 }

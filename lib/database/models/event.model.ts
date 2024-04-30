@@ -79,6 +79,6 @@ const EventSchema = new Schema({
 })
 
 // Exporting the EventSchema 
-const Event = model('Event', EventSchema);
+const Event = models.Event || model('Event', EventSchema);
 
 export default Event;
