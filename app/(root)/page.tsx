@@ -58,7 +58,7 @@ export default function Home() {
             </div>
 
             {/* Hero Section Explore Button */}
-            <Button className="bg-black text-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-primary hover:text-black">
+            <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary">
               <Link href="#events">
                 Explore Now
               </Link>
