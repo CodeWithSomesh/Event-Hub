@@ -11,9 +11,23 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
 import { eventImages } from "@/constants";
+import Search from "@/components/shared/Search";
+import CategoryFilter from "@/components/shared/CategoryFilter";
+import Collection from "@/components/shared/Collection";
+import { getAllEvents } from "@/lib/actions/event.actions";
 
 
-export default function Home() {
+export default async function Home() {
+  // Getting al events in the database
+  const events = await getAllEvents({
+    query: '',
+    category: '',
+    page: 1,
+    limit: 6
+  })
+
+  // console.log(events) 
+
   return (
     <>
         <section className="bg-primary-50 bg-contain py-5 md:py-8 w-full">
@@ -65,6 +79,26 @@ export default function Home() {
             </Button>
           </div>
 
+        </section>
+
+
+        <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+          <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
+
+          <div className="flex w-full flex-col gap-5 md:flex-row">
+            <Search />
+            <CategoryFilter />
+          </div>
+
+          <Collection 
+            data={events?.data}
+            emptyTitle="No Events Found" //If no events found
+            emptyStateSubtext="Come back later"
+            collectionType="All_Events"
+            limit={6}
+            page={1}
+            totalPages={events?.totalPages}
+          />
         </section>
     </>
   );
