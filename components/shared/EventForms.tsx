@@ -26,19 +26,29 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "@/components/ui/checkbox"
 import { useUploadThing } from "@/lib/uploadthing"
 import { useRouter } from "next/navigation"
-import { createEvent } from "@/lib/actions/event.actions"
+import { createEvent, updateEvent } from "@/lib/actions/event.actions"
+import { IEvent } from "@/lib/database/models/event.model"
 
 
 type EventFormProps = {
     userId: string;
     type: "Publish" | "Update"
+    event?: IEvent
+    eventId?: string
 }
 
-const EventForms = ({userId, type}: EventFormProps) => {
+const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
   
   const [files, setFiles] = useState<File[]>([])
-  
-  const initialValues = eventDefaultValues;
+  // If organizer updating event details, then fetch the details in the databse to the forms
+  const initialValues = event && type === 'Update' 
+    ? {
+      ...event,
+      startDateTime: new Date(event.startDateTime),
+      endDateTime: new Date(event.endDateTime)
+    }
+    : eventDefaultValues;
+
   const router = useRouter()
 
   const {startUpload} = useUploadThing('imageUploader')
@@ -74,11 +84,35 @@ const EventForms = ({userId, type}: EventFormProps) => {
         })
 
         if(newEvent){
-          console.log('new event almost created in database')
+          console.log('New event succesfully added in database')
           form.reset()
           router.push(`/events/${newEvent._id}`)
         }
-        console.log('new event not created in database')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    if(type === 'Update'){
+
+      if(!eventId){
+        router.back()
+        return;
+      }
+
+      try {
+
+        const updatedEvent = await updateEvent({
+          userId,
+          event: {...values, imageUrl: uploadedImageUrl, _id: eventId },
+          path: `/events/${eventId}`
+        })
+
+        if(updatedEvent){
+          console.log('Event details updated in database')
+          form.reset()
+          router.push(`/events/${updatedEvent._id}`)
+        }
       } catch (error) {
         console.log(error)
       }

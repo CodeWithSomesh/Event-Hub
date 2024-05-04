@@ -4,7 +4,7 @@ import { Document, Schema, model, models } from "mongoose"
 // Defining the types using Typescript 
 export interface IEvent extends Document{
     _id: string,
-    title: string;
+    eventTitle: string;
     description?: string;
     location?: string;
     createdAt?: Date;

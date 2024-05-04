@@ -113,13 +113,18 @@ export const deleteEvent = async ({eventId, path} : DeleteEventParams) => {
 // UPDATE EVENT
 export async function updateEvent({ userId, event, path }: UpdateEventParams) {
     try {
+      //Connect to the Database
       await connectToDatabase()
-  
+      
+      // Finding an event by its ID 
       const eventToUpdate = await Event.findById(event._id)
+
+      //If no events with given ID display error message
       if (!eventToUpdate || eventToUpdate.organizer.toHexString() !== userId) {
         throw new Error('Unauthorized or event not found')
       }
-  
+      
+      //Update the Event Details
       const updatedEvent = await Event.findByIdAndUpdate(
         event._id,
         { ...event, category: event.categoryId },
