@@ -142,6 +142,7 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
 // GET EVENTS BY ORGANIZER
 export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
     try {
+      //Connect to the Database
       await connectToDatabase()
   
       const conditions = { organizer: userId }
@@ -169,11 +170,12 @@ export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUs
     page = 1,
   }: GetRelatedEventsByCategoryParams) {
     try {
+      //Connect to the Database
       await connectToDatabase()
   
       const skipAmount = (Number(page) - 1) * limit
       const conditions = { $and: [{ category: categoryId }, { _id: { $ne: eventId } }] }
-  
+    
       const eventsQuery = Event.find(conditions)
         .sort({ createdAt: 'desc' })
         .skip(skipAmount)
