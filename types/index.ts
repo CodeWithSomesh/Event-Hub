@@ -37,7 +37,7 @@ export type CreateEventParams = {
     userId: string
     event: {
       _id: string;
-      title: string;
+      eventTitle: string;
       imageUrl: string;
       description: string;
       location: string;
@@ -78,7 +78,7 @@ export type CreateEventParams = {
   
   export type Event = {
     _id: string
-    title: string
+    eventTitle: string
     description: string
     price: string
     isFree: boolean
