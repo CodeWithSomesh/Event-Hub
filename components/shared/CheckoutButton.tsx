@@ -5,7 +5,7 @@ import { SignedIn, SignedOut, useUser } from '@clerk/nextjs'
 import React from 'react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
-import Checkout from './Checkout'
+// import Checkout from './Checkout'
 
 const CheckoutButton = ({event} : {event : IEvent}) => {
 
@@ -33,7 +33,7 @@ const CheckoutButton = ({event} : {event : IEvent}) => {
           </SignedOut>
 
           <SignedIn>
-            <Checkout event={event} userId={userId} />
+            {/* <Checkout event={event} userId={userId} /> */}
           </SignedIn>
         </>
       )}
