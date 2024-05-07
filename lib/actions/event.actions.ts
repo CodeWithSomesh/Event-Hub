@@ -1,6 +1,10 @@
 'use server'
 
-import { CreateEventParams, DeleteEventParams, GetAllEventsParams, GetEventsByUserParams, GetRelatedEventsByCategoryParams, UpdateEventParams } from "@/types";
+import { 
+  CreateEventParams, DeleteEventParams, 
+  GetAllEventsParams, GetEventsByUserParams, 
+  GetRelatedEventsByCategoryParams, UpdateEventParams 
+} from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import Event from "../database/models/event.model";
@@ -37,6 +41,11 @@ const populateEvent = async(query:any) => {
     return query
         .populate({path: 'organizer', model: User, select: '_id firstName lastName'})
         .populate({path: 'category', model: Category, select: '_id name'})
+}
+
+// GET VATEGORY BY THEIR NAME
+const getCategoryByName = async (name: string) => {
+  return Category.findOne({ name: { $regex: name, $options: 'i' } })
 }
 
 // GET EVENT BY ID

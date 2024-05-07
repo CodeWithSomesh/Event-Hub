@@ -10,7 +10,7 @@ type CollectionProps = {
     page: number | string,
     totalPages?: number,
     urlParamName?: string,
-    collectionType?: 'Events_Organized' | 'My_Events' | 'All_Events',
+    collectionType?: 'Events_Organized' | 'My_Tickets' | 'All_Events',
 }
 
 const Collection = ({data, emptyTitle, emptyStateSubtext, page, totalPages = 0,
@@ -23,7 +23,7 @@ const Collection = ({data, emptyTitle, emptyStateSubtext, page, totalPages = 0,
           <ul className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
             {data.map((event) => {
               const hasOrderLink = collectionType === 'Events_Organized';
-              const hidePrice = collectionType === 'My_Events';
+              const hidePrice = collectionType === 'Events_Organized';
 
               return (
                 <li key={event._id} className="flex justify-center">
