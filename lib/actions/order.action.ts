@@ -1,4 +1,4 @@
- "use server"
+"use server"
 
 import Stripe from 'stripe';
 import { CheckoutOrderParams, CreateOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
@@ -48,8 +48,10 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
 
 export const createOrder = async (order: CreateOrderParams) => {
   try {
+    //Connect to the Database
     await connectToDatabase();
     
+    // Create an order 
     const newOrder = await Order.create({
       ...order,
       event: order.eventId,
@@ -62,9 +64,10 @@ export const createOrder = async (order: CreateOrderParams) => {
   }
 }
 
-// GET ORDERS BY EVENT
+// GET ORDERS BY EVENT FOR THE ORGANIZERS TO SEE HOW MANY TICKETS HAVE BEEN BOUGHT
 export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEventParams) {
   try {
+    //Connect to the Database
     await connectToDatabase()
 
     if (!eventId) throw new Error('Event ID is required')
@@ -118,20 +121,22 @@ export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEve
   }
 }
 
-// GET ORDERS BY USER
+// GET ORDERS BY USER TO DISPLAY THEIR TICKETS IN THE PROFILE PAGE
 export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUserParams) {
   try {
+    //Connect to the Database
     await connectToDatabase()
-
+    
+    //Implementing Paginations
     const skipAmount = (Number(page) - 1) * limit
     const conditions = { buyer: userId }
 
     const orders = await Order.distinct('event._id')
-      .find(conditions)
-      .sort({ createdAt: 'desc' })
+      .find(conditions) // Find userIds that have bought this ticket 
+      .sort({ createdAt: 'desc' }) // Sort it by the latest tickets first 
       .skip(skipAmount)
-      .limit(limit)
-      .populate({
+      .limit(limit) // Limit to 3 per page
+      .populate({ // Populate it with extra attributes
         path: 'event',
         model: Event,
         populate: {
