@@ -1,4 +1,4 @@
-"use server"
+ "use server"
 
 import Stripe from 'stripe';
 import { CheckoutOrderParams, CreateOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
@@ -12,10 +12,12 @@ import User from '../database/models/user.model';
 
 export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
+  // If users select free then price is 0, 
+  // if not take the price user given and x100 because Stripe take the money in cents 
   const price = order.isFree ? 0 : Number(order.price) * 100;
 
   try {
+    // Create Checkout Sessions from body params
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
