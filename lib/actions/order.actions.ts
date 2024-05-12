@@ -64,7 +64,7 @@ export const createOrder = async (order: CreateOrderParams) => {
   }
 }
 
-// GET ORDERS BY EVENT FOR THE ORGANIZERS TO SEE HOW MANY TICKETS HAVE BEEN BOUGHT
+// GET ORDERS BY EVENT FOR THE ORGANIZERS TO SEE BOUGHT TICKET DETAILS
 export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEventParams) {
   try {
     //Connect to the Database
@@ -101,7 +101,7 @@ export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEve
           _id: 1,
           totalAmount: 1,
           createdAt: 1,
-          eventTitle: '$event.title',
+          eventTitle: '$event.eventTitle',
           eventId: '$event._id',
           buyer: {
             $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
