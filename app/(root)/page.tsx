@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
 import { eventImages } from "@/constants";
-import Search from "@/components/shared/Search";
+import Searchbar from "@/components/shared/Searchbar";
 import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/Collection";
 import { getAllEvents } from "@/lib/actions/event.actions";
@@ -86,7 +86,7 @@ export default async function Home() {
           <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
 
           <div className="flex w-full flex-col gap-5 md:flex-row">
-            <Search />
+            <Searchbar />
             <CategoryFilter />
           </div>
 
