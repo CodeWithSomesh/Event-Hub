@@ -76,7 +76,7 @@ export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEve
         //Connect to the Database
         await connectToDatabase();
 
-        const titleCondition = query ? { title: { $regex: query, $options: 'i' } } : {}
+        const titleCondition = query ? { eventTitle: { $regex: query, $options: 'i' } } : {}
         const categoryCondition = category ? await getCategoryByName(category) : null
         const conditions = {
             $and: [titleCondition, categoryCondition ? { category: categoryCondition._id } : {}],
@@ -85,7 +85,7 @@ export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEve
         const skipAmount = (Number(page) - 1) * limit
         const eventQuery = Event.find(conditions)
             .sort({createdAt: 'desc'}) // Display the newly added events in the Database first
-            .skip(0)
+            .skip(skipAmount)
             .limit(limit);
 
         const events = await populateEvent(eventQuery)

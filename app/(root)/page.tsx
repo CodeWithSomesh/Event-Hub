@@ -15,14 +15,20 @@ import Searchbar from "@/components/shared/Searchbar";
 import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/Collection";
 import { getAllEvents } from "@/lib/actions/event.actions";
+import { SearchParamProps } from "@/types";
 
 
-export default async function Home() {
-  // Getting al events in the database
+export default async function Home({searchParams} : SearchParamProps) {
+
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || '';
+  const category = (searchParams?.category as string) || '';
+
+  // Getting all events in the database
   const events = await getAllEvents({
-    query: '',
-    category: '',
-    page: 1,
+    query: searchText,
+    category,
+    page,
     limit: 6
   })
 
