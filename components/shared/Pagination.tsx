@@ -40,6 +40,9 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
       >
         Previous
       </Button>
+      <p className='flex self-center'>
+        {`${page}/${totalPages}`}
+      </p>
       <Button
         size="lg"
         variant="outline"
