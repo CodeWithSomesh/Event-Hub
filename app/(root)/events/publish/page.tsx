@@ -1,5 +1,8 @@
 import EventForms from "@/components/shared/EventForms"
+import { Boxes } from "@/components/ui/background-boxes";
 import { auth } from '@clerk/nextjs/server';
+import { cn } from "@/lib/utils";
+import HoverHeader from "@/components/shared/HoverHeader";
 
 const PublishEvent = () => {
 
@@ -9,9 +12,8 @@ const PublishEvent = () => {
 
   return (
     <>
-      <section className='bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10'>
-        <h3 className='wrapper h3-bold text-center'>Publish Event</h3>
-      </section>
+
+      <HoverHeader titlePlaceholder="Publish Event" />
 
       <div className='wrapper my-8'>
         <EventForms userId = {userId} type="Publish"/>

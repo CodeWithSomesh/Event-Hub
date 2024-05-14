@@ -1,4 +1,5 @@
 import EventForms from "@/components/shared/EventForms"
+import HoverHeader from "@/components/shared/HoverHeader";
 import { getEventById } from "@/lib/actions/event.actions";
 import { auth } from '@clerk/nextjs/server';
 
@@ -17,9 +18,7 @@ const UpdateEvent = async ({params: {id}} : UpdateEventProps) => {
 
   return (
     <>
-      <section className='bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10'>
-        <h3 className='wrapper h3-bold text-center sm:text-left'>Update Event</h3>
-      </section>
+      <HoverHeader titlePlaceholder="Update Event" />
 
       <div className='wrapper my-8'>
         <EventForms userId = {userId} type="Update" event={event} eventId = {event._id}/>
