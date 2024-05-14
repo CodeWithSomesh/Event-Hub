@@ -25,7 +25,7 @@ const page = async ({ searchParams }: SearchParamProps) => {
   return (
     <>
       {/* My Tickets */}
-      <HoverHeader titlePlaceholder='My Tickets' buttonPlaceholder='Explore Events'/>
+      <HoverHeader titlePlaceholder='My Tickets' buttonPlaceholder='Explore More Events'/>
 
 
       <section className="wrapper my-8">

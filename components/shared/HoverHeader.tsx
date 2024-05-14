@@ -15,10 +15,10 @@ const HoverHeader = ({titlePlaceholder, buttonPlaceholder}: {titlePlaceholder: s
           <Boxes />
 
           <div className="wrapper flex items-center justify-center sm:justify-between">
-            <h1 className='h3-bold text-white bg-primary z-10 max-w-7xl p-5 md:px-10 rounded-md'>
+            <h1 className='h3-bold text-white bg-black hover:text-primary z-10 max-w-7xl p-5 md:px-10 rounded-md'>
               {titlePlaceholder}
             </h1>
-            <Button asChild size="lg" className="button hidden sm:flex z-10">
+            <Button asChild size="lg" className="bg-primary text-md font-semibold p-4 hover:bg-black hover:text-primary hidden sm:flex z-10">
               <Link href="/#events">
                 {buttonPlaceholder}
               </Link>
@@ -32,7 +32,7 @@ const HoverHeader = ({titlePlaceholder, buttonPlaceholder}: {titlePlaceholder: s
           <div className="absolute inset-0 w-full h-full z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
           <Boxes />
-          <h1 className='h3-bold text-center text-white bg-primary z-10 max-w-7xl lg:mx-auto p-5 md:px-10 rounded-md'>
+          <h1 className='h3-bold text-center text-white bg-black hover:text-primary z-10 max-w-7xl lg:mx-auto p-5 md:px-10 rounded-md'>
             {titlePlaceholder}
           </h1>
         </div>
