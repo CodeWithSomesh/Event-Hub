@@ -56,7 +56,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
             <div className="flex flex-col gap-5">
               {/*Event Start Date & End Date */}
               <div className='flex gap-2 items-center mt-2'>
-                <Image src="/assets/icons/calendar.svg" alt="calendar" width={32} height={32} />
+                <Image src="/assets/icons/calendar2.svg" alt="calendar" width={32} height={32} />
 
                 <p className="p-medium-18 flex flex-wrap md:flex-col items-center justify-center">
                   {formatDateTime(event.startDateTime).dateOnly}, {' '}
@@ -65,7 +65,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
                 -
               
-                <Image src="/assets/icons/calendar.svg" alt="calendar" width={32} height={32} />
+                <Image src="/assets/icons/calendar2.svg" alt="calendar" width={32} height={32} />
 
                 <p className="p-medium-18 flex flex-wrap md:flex-col items-center justify-center">
                   {formatDateTime(event.endDateTime).dateOnly}, {' '}

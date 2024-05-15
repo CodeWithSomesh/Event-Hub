@@ -243,7 +243,7 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
                   <FormControl>
                     <div className="flex-center h-[60px] w-full overflow-hidden rounded-md border bg-primary-50 px-4 py-2">
                       <Image
-                        src="/assets/icons/calendar.svg"
+                        src="/assets/icons/calendar2.svg"
                         alt="calendar"
                         width={24}
                         height={24}
@@ -276,7 +276,7 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
                   <FormControl>
                     <div className="flex-center h-[60px] w-full overflow-hidden rounded-md border bg-primary-50 px-4 py-2">
                       <Image
-                        src="/assets/icons/calendar.svg"
+                        src="/assets/icons/calendar2.svg"
                         alt="calendar"
                         width={24}
                         height={24}

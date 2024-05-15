@@ -39,7 +39,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       )}
 
       <Link href={`/events/${event._id}`}
-        className={`flex flex-col gap-3 p-5 md:gap-4 ${hasOrderLink ? 'min-h-[170px]' : 'min-h-[230px]'}`}
+        className={`flex flex-col gap-3 p-5 md:gap-6 ${hasOrderLink ? 'min-h-[170px]' : 'min-h-[230px]'}`}
       > 
         
 
@@ -56,12 +56,12 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
         {/*Event Title */}
         <Link href={`/events/${event._id}`}>
-          <p className="p-semibold-16 md:p-semibold-20 line-clamp-2 flex-1 text-black">{event.eventTitle}</p>
+          <p className="p-semibold-16 md:p-semibold-20 flex-1 text-black truncate">{event.eventTitle}</p>
         </Link>
 
         {/*Event Start Date */}
-        <div className='flex gap-1'>
-          <Image src="/assets/icons/calendar.svg" alt="search" width={24} height={24} />
+        <div className='flex gap-1.5'>
+          <Image src="/assets/icons/calendar2.svg" alt="search" width={24} height={24} />
           <p className="p-medium-16 p-medium-18 text-grey-500 truncate">
             {formatDateTime(event.startDateTime).dateTime}
           </p>
@@ -83,14 +83,14 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         {/*Event Order Details */}
         {hasOrderLink ? (
           <Link href={`/orders?eventId=${event._id}`} className="flex gap-2 self-end w-fit mt-4 hover:border-b-black hover:border-b-2">
-            <p className="p-medium-14 md:p-medium-16 text-primary">Order Details</p>
-            <Image src="/assets/icons/arrow.svg" alt="search" width={10} height={10} />
+            <p className="p-medium-16 md:p-medium-18 text-primary">Order Details</p>
+            <Image src="/assets/icons/goto.svg" alt="search" width={24} height={24} />
           </Link>
         ) : (
           /*Event Organizer Name */
-          <Link href={`/events/${event._id}`} className="flex gap-2 self-end w-fit mt-4 hover:border-b-black hover:border-b-2">
-            <p className="p-medium-14 md:p-medium-16 text-primary">Learn More</p>
-            <Image src="/assets/icons/arrow.svg" alt="search" width={10} height={10} />
+          <Link href={`/events/${event._id}`} className="flex gap-1 self-end items-start w-fit mt-4 hover:border-b-black hover:border-b-2">
+            <p className="p-medium-16 md:p-medium-18 text-primary">Learn More</p>
+            <Image src="/assets/icons/goto.svg" alt="search" width={24} height={24} />
           </Link>
         )}
 

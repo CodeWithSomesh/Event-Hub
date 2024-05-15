@@ -37,9 +37,9 @@ export default async function Home({searchParams} : SearchParamProps) {
 
   return (
     <>
-        <section className="bg-primary-50 bg-contain py-5 md:py-8 w-full">
+        <section className="bg-primary-50 bg-contain pt-2 pb-5 md:pb-8 w-full">
 
-          <div className="wrapper grid gap-5 ">
+          <div className="wrapper grid gap-5">
 
             {/* Hero Section Title */}
             <div className="">
@@ -54,8 +54,11 @@ export default async function Home({searchParams} : SearchParamProps) {
                   <CarouselItem key={event.src} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1">
                       <Card>
-                        <CardContent className="flex aspect-square p-6 border-4 border-black rounded-md">
+                        <CardContent className="flex aspect-square p-4 border-4 border-black rounded-md relative">
                           <Image src={event.src} alt="Event Images" width={1000} height={1000} className="object-cover object-bottom rounded-md"/>
+                          <p className="absolute opacity-100 hover:opacity-0 bg-white py-2 px-3 rounded-md bottom-6 right-6 font-medium text-lg border-2 border-slate-300">
+                            {event.type}
+                          </p>
                         </CardContent>
                       </Card>
                     </div>
@@ -67,15 +70,40 @@ export default async function Home({searchParams} : SearchParamProps) {
             </Carousel>
 
             {/* Hero Section Desc */}
-            <div className="">
-              <p className="p-semibold-18 md:p-semibold-20">Life's too short for boring weekends.</p>
-              <p className="p-semibold-18 md:p-semibold-20">Dive into a world of events, buy tickets, or become the ultimate host.</p>  
+            <div className="flex justify-between items-center mb-6 mt-4">
+              <div>
+                <q className="p-semibold-18 md:p-semibold-20">
+                  Life's too short for boring weekends. <br />
+                  Dive into a world of events, buy tickets, or become the ultimate host.
+                </q>
+              </div>
+
+              <div className="border w-8 border-black"></div>
+                
+              <div className="flex justify-center items-center gap-2">
+                
+                <Image src='/assets/images/star-logo.png' alt="Event Images" width={100} height={100} className="object-cover object-bottom rounded-md border-4"/>
+                <p className="text-lg md:text-xl italic">The Star Media Group Berhad</p>
+              </div>
+               
             </div>
 
             {/* Hero Section Desc */}
-            <div className="text-right">
-              <p className="p-semibold-18 md:p-semibold-20">From concerts to conferences, find your next adventure here.</p>
-              <p className="p-semibold-18 md:p-semibold-20">Let's make memories, starting now!</p>
+            <div className="flex justify-between items-center mb-6">
+                
+              <div className="flex justify-center items-center gap-2">
+                <Image src='/assets/images/nst-logo.webp' alt="Event Images" width={130} height={130} className="object-cover object-bottom rounded-md border-4"/>
+                <p className="text-lg md:text-xl italic">The New Straits Times Press (M) Bhd</p>
+              </div>
+
+              <div className="border w-8 border-black"></div>
+               
+              <div className="text-right">
+                <q className="p-semibold-18 md:p-semibold-20">
+                  From concerts to conferences, find your next adventure here. <br />
+                  Let's make memories, starting now!
+                </q>
+              </div>
             </div>
 
             {/* Hero Section Explore Button */}

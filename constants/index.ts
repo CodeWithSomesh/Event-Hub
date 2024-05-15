@@ -17,48 +17,48 @@ export const navLinks = [
 export const eventImages = [
     {
         
-        type: 'Holi Festival',
+        type: 'Holi Festival Penang 2024',
         src: '/assets/images/event8.jpeg'
     },
     
     {
-        type: 'Art Exhibition',
+        type: 'Picasso Art Exhibition 2024',
         src: '/assets/images/event3.jpeg'
     },
     {
-        type: 'Ballet Dance Show',
+        type: 'Ballerina Ballet Dance Show 2024',
         src: '/assets/images/event6.jpeg'
     },
     
     {
         
-        type: 'Concert',
+        type: 'Travis Scott Concert 2024',
         src: '/assets/images/event1.jpeg'
     },
     {
         
-        type: 'Pottery Class',
+        type: "Sara's Pottery Class",
         src: '/assets/images/event5.jpg'
     },
     
     {
-        type: 'Yoga Class',
+        type: "Reina's Yoga Class",
         src: '/assets/images/event7.jpeg'
     },
     {
-        type: 'Seminar',
+        type: 'Web Development Seminar',
         src: '/assets/images/event4.jpeg'
     },
     {
-        type: 'Webinar',
+        type: 'Mutual Funds Trading Webinar',
         src: '/assets/images/event9.jpeg'
     },
     {
-        type: 'Fashion Show',
+        type: "Uniqlo's Fashion Show 2024",
         src: '/assets/images/event10.jpeg'
     },
     {
-        type: 'Camping Trip',
+        type: 'Campers Trip 2024',
         src: '/assets/images/event11.jpeg'
     },
 
