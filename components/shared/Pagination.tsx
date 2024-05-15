@@ -34,11 +34,11 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
       <Button
         size="lg"
         variant="outline"
-        className="w-28"
+        className="w-28 text-lg border-slate-400 border-2"
         onClick={() => onClick('prev')}
         disabled={Number(page) <= 1}
       >
-        Previous
+        &#x3c; Previous
       </Button>
       <p className='flex self-center'>
         {`${page}/${totalPages}`}
@@ -46,11 +46,11 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
       <Button
         size="lg"
         variant="outline"
-        className="w-28"
+        className="w-28 text-lg border-slate-400 border-2"
         onClick={() => onClick('next')}
         disabled={Number(page) >= totalPages}
       >
-        Next
+        Next &#x3e;
       </Button>
     </div>
   )
