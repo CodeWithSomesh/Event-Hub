@@ -35,7 +35,7 @@ const Searchbar = ({ placeholder = 'Search By Event Title...' }: { placeholder?:
   }, [query, searchParams, router])
 
   return (
-    <div className="flex-center min-h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
+    <div className="flex-center min-h-[60px] w-full overflow-hidden rounded-md border-2 border-primary bg-primary-50 px-4 py-2">
       <Image src="/assets/icons/search.svg" alt="search" width={24} height={24} />
       <Input 
         type="text"

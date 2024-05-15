@@ -16,6 +16,7 @@ import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/Collection";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
+import HoverHeader from "@/components/shared/HoverHeader";
 
 
 export default async function Home({searchParams} : SearchParamProps) {
@@ -87,10 +88,9 @@ export default async function Home({searchParams} : SearchParamProps) {
 
         </section>
 
-
         <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-          <h2 className="h2-bold text-center">Trust by <br /> Thousands of Events</h2>
-
+          <h2 className="h2-bold text-center">Trusted by <br /> Thousands of Events</h2>
+          
           <div className="flex w-full flex-col gap-5 md:flex-row">
             <Searchbar />
             <CategoryFilter />
