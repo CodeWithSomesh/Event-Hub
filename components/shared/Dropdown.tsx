@@ -34,9 +34,13 @@ const Dropdown = ({value, onChangeHandler}: DropdownProps) => {
   const [newCategory, setNewCategory] = useState('')
 
   const handleAddCategory = () => {
-    createCategory({categoryName: newCategory.trim()})
-      .then((category) => setCategories((prevState) => [...prevState, category]))
+    const capitalizedCategoryName = newCategory
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
 
+    createCategory({categoryName: capitalizedCategoryName.trim()})
+      .then((category) => setCategories((prevState) => [...prevState, category]))
   }
 
   useEffect(()=>{

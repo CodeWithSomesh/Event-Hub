@@ -20,14 +20,14 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-lg
-    bg-white shadow-lg transition-all hover:shadow-2xl hover:scale-105 md:min-h-[438px]">
+    bg-white shadow-lg transition-all hover:shadow-2xl hover:scale-105 md:min-h-[438px] border-2">
       <Link 
         href={`/events/${event._id}`}
         style={{backgroundImage: `url(${event.imageUrl})`}}
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
-      {/* IS EVENT CREATOR ... */}
 
+      {/* If the user is the event organizer, then Update & Delete buttons will be displayed */}
       {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
@@ -38,39 +38,63 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         </div>
       )}
 
-      <div
-        className={`flex  flex-col gap-3 p-5 md:gap-4 ${hasOrderLink ? 'min-h-[170px]' : 'min-h-[230px]'}`}
+      <Link href={`/events/${event._id}`}
+        className={`flex flex-col gap-3 p-5 md:gap-4 ${hasOrderLink ? 'min-h-[170px]' : 'min-h-[230px]'}`}
       > 
-       {!hidePrice && <div className="flex gap-2">
-          <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60">
-            {event.isFree ? 'FREE' : `$${event.price}`}
+        
+
+       {!hidePrice && <div className="flex gap-2 justify-between">
+          {/*Event Price */}
+          <span className="p-semibold-16 rounded-full bg-green-100 px-6 py-2 text-green-60">
+            {event.isFree ? 'FREE' : `RM ${event.price}`}
           </span>
-          <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
+          {/*Event Category */}
+          <p className="p-semibold-14 rounded-full bg-grey-500/10 px-6 py-2 text-grey-500 line-clamp-1 flex items-center ">
             {event.category?.name}
           </p>
         </div>}
 
-        <p className="p-medium-16 p-medium-18 text-grey-500">
-          {formatDateTime(event.startDateTime).dateTime}
-        </p>
-
+        {/*Event Title */}
         <Link href={`/events/${event._id}`}>
-          <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">{event.eventTitle}</p>
+          <p className="p-semibold-16 md:p-semibold-20 line-clamp-2 flex-1 text-black">{event.eventTitle}</p>
         </Link>
 
-        <div className="flex-between w-full">
-          <p className="p-medium-14 md:p-medium-16 text-grey-600">
-            {event.organizer?.firstName} {event.organizer?.lastName}
+        {/*Event Start Date */}
+        <div className='flex gap-1'>
+          <Image src="/assets/icons/calendar.svg" alt="search" width={24} height={24} />
+          <p className="p-medium-16 p-medium-18 text-grey-500 truncate">
+            {formatDateTime(event.startDateTime).dateTime}
           </p>
-
-          {hasOrderLink && (
-            <Link href={`/orders?eventId=${event._id}`} className="flex gap-2">
-              <p className="text-primary-500">Order Details</p>
-              <Image src="/assets/icons/arrow.svg" alt="search" width={10} height={10} />
-            </Link>
-          )}
         </div>
-      </div>
+        
+        
+        {/*Event Start Date */}
+        <div className='flex gap-1'>
+          <Image src="/assets/icons/location.svg" alt="search" width={24} height={24} />
+          <p className="p-medium-16 p-medium-18 text-grey-500 truncate">
+            {event?.location}
+          </p>
+        </div>
+        
+        
+
+        
+
+        {/*Event Order Details */}
+        {hasOrderLink ? (
+          <Link href={`/orders?eventId=${event._id}`} className="flex gap-2 self-end w-fit mt-4 hover:border-b-black hover:border-b-2">
+            <p className="p-medium-14 md:p-medium-16 text-primary">Order Details</p>
+            <Image src="/assets/icons/arrow.svg" alt="search" width={10} height={10} />
+          </Link>
+        ) : (
+          /*Event Organizer Name */
+          <Link href={`/events/${event._id}`} className="flex gap-2 self-end w-fit mt-4 hover:border-b-black hover:border-b-2">
+            <p className="p-medium-14 md:p-medium-16 text-primary">Learn More</p>
+            <Image src="/assets/icons/arrow.svg" alt="search" width={10} height={10} />
+          </Link>
+        )}
+
+      </Link>
     </div>
   )
 }
