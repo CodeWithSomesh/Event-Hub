@@ -133,11 +133,21 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
                     <FormItem className="w-full">
                     <FormLabel>Event Title</FormLabel>
                     <FormControl>
-                        <Input 
-                            placeholder="Example: Ballet Dance Show at SPICE Stadium, Penang" 
-                            className="input-field"
-                            {...field} 
+                    <div className="flex-center h-[60px] w-full overflow-hidden rounded-md border bg-primary-50 px-4 py-2">
+                        <Image
+                          src="/assets/icons/title.svg"
+                          alt="Event Title"
+                          width={24}
+                          height={24}
                         />
+
+                        <Input 
+                          placeholder="Example: Ballet Dance Show at SPICE Stadium, Penang" 
+                          className="input-field border-none"
+                          {...field} 
+                        />
+                      </div>
+                      
                     </FormControl>
                     
                     <FormMessage />
@@ -311,10 +321,10 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
                     <FormControl>
                       <div className="flex-center h-[60px] w-full overflow-hidden rounded-md border bg-primary-50 px-4 py-2">
                         <Image
-                          src="/assets/icons/dollar.svg"
+                          src="/assets/icons/money.svg"
                           alt="dollar"
-                          width={24}
-                          height={24}
+                          width={28}
+                          height={28}
                         />
 
                         <Input type="number" placeholder="Price" {...field} className="p-regular-16 border-0 bg-primary-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
@@ -355,13 +365,13 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
                     <FormControl>
                       <div className="flex-center h-[60px] w-full overflow-hidden rounded-md border bg-primary-50 px-4 py-2">
                         <Image
-                          src="/assets/icons/link.svg"
+                          src="/assets/icons/url.svg"
                           alt="calendar"
                           width={24}
                           height={24}
                         />
 
-                        <Input placeholder="Example: " {...field} className="input-field border-none" />
+                        <Input placeholder="Example: https://www.google.com" {...field} className="input-field border-none" />
                       </div>
                     </FormControl>
                     

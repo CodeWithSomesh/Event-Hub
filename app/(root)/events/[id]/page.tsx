@@ -81,7 +81,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
               {/*Event Organizer's Full Name */}
               <div className="p-regular-20 flex items-center gap-2 mt-2">
-                <Image src="/assets/icons/location.svg" alt="location" width={32} height={32} />
+                <Image src="/assets/icons/organizer.svg" alt="organizer" width={32} height={32} />
 
                 <p className="p-medium-16 mt-2 sm:mt-0">
                   Organized by{' '}
@@ -95,8 +95,8 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               </div>
               
               <div className='mt-4'>
-                <p className="p-bold-20 text-grey-600">What You&apos;ll Learn &#58;</p>
-                <p className="p-medium-16 lg:p-regular-18">{event.description}</p> 
+                <p className="p-bold-20 text-grey-600 mb-2">What You&apos;ll Learn &#58;</p>
+                <p className="p-medium-16 lg:p-regular-18 text-justify">{event.description}</p> 
               </div>
 
             </div>
