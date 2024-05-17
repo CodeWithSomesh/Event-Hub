@@ -30,7 +30,7 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 mt-8">
       <Button
         size="lg"
         variant="outline"
@@ -40,7 +40,7 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
       >
         &#x3c; Previous
       </Button>
-      <p className='flex self-center'>
+      <p className='flex self-center mx-4'>
         {`${page}/${totalPages}`}
       </p>
       <Button
