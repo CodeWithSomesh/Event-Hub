@@ -15,7 +15,7 @@ const NavItems = () => {
             const isActive = pathname === link.route;
 
             return (
-                <li key={link.route} className={`flex-center font-medium whitespace-nowrap ${isActive && 'text-primary-500 font-extrabold border-b-2 border-black'}`}>
+                <li key={link.route} className={`flex-center font-medium whitespace-nowrap hover:text-primary transition-all ${isActive && 'text-primary-500 font-extrabold border-b-2 border-black'}`}>
                     <Link href={link.route} >{link.label}</Link>
                 </li>
             )

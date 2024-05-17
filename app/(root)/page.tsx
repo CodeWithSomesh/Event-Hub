@@ -11,42 +11,24 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
 import { eventImages } from "@/constants";
-import Searchbar from "@/components/shared/Searchbar";
-import CategoryFilter from "@/components/shared/CategoryFilter";
-import Collection from "@/components/shared/Collection";
-import { getAllEvents } from "@/lib/actions/event.actions";
-import { SearchParamProps } from "@/types";
 import HoverHeader from "@/components/shared/HoverHeader";
 
 
-export default async function Home({searchParams} : SearchParamProps) {
 
-  const page = Number(searchParams?.page) || 1;
-  const searchText = (searchParams?.query as string) || '';
-  const category = (searchParams?.category as string) || '';
+export default async function Home() {
 
-  // Getting all events in the database
-  const events = await getAllEvents({
-    query: searchText,
-    category,
-    page,
-    limit: 6
-  })
-
-  // console.log(events) 
+  
 
   return (
     <>
-        <section className="bg-primary-50 bg-contain pt-2 pb-5 md:pb-8 w-full">
+
+        {/* Hero Section Title */}
+        <HoverHeader home={true} />
+
+        <section className="bg-contain pt-2 pb-5 md:pb-8 w-full">
 
           <div className="wrapper grid gap-5">
-
-            {/* Hero Section Title */}
-            <div className="">
-              <h1 className="h1-bold text-center">Your Passport to Events Worldwide</h1>
-              <h1 className="h1-bold text-center text-primary">— Discover. Experience. Connect.</h1>
-            </div>            
-
+      
             {/* Carousel Slider */}
             <Carousel>
               <CarouselContent>
@@ -107,33 +89,16 @@ export default async function Home({searchParams} : SearchParamProps) {
             </div>
 
             {/* Hero Section Explore Button */}
-            <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary">
-              <Link href="#events">
-                Explore Now
-              </Link>
-            </Button>
+            <Link href="/events">
+              <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary"> 
+                  Explore Now
+              </Button>
+            </Link>
           </div>
 
         </section>
 
-        <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-          <h2 className="h2-bold text-center">Trusted by <br /> Thousands of Events</h2>
-          
-          <div className="flex w-full flex-col gap-5 md:flex-row">
-            <Searchbar />
-            <CategoryFilter />
-          </div>
-
-          <Collection 
-            data={events?.data}
-            emptyTitle="No Events Found" //If no events found
-            emptyStateSubtext="Come back later"
-            collectionType="All_Events"
-            limit={6}
-            page={page}
-            totalPages={events?.totalPages}
-          />
-        </section>
+        
     </>
   );
 }
