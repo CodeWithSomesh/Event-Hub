@@ -9,10 +9,10 @@ import {DeleteConfirmation} from './DeleteConfirmation'
 type CardProps = {
   event: IEvent,
   hasOrderLink?: boolean,
-  hidePrice?: boolean
+  isTicket?: boolean
 }
 
-const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+const Card = ({ event, hasOrderLink, isTicket }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
@@ -28,7 +28,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       />
 
       {/* If the user is the event organizer, then Update & Delete buttons will be displayed */}
-      {isEventCreator && !hidePrice && (
+      {isEventCreator && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
             <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
@@ -43,7 +43,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       > 
         
 
-       {!hidePrice && <div className="flex gap-2 justify-between">
+       {<div className="flex gap-2 justify-between">
           {/*Event Price */}
           <span className="p-semibold-16 rounded-full bg-green-100 px-6 py-2 text-green-60">
             {event.isFree ? 'FREE' : `RM ${event.price}`}
@@ -68,7 +68,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         </div>
         
         
-        {/*Event Start Date */}
+        {/*Event Location */}
         <div className='flex gap-1'>
           <Image src="/assets/icons/location.svg" alt="search" width={24} height={24} />
           <p className="p-medium-16 p-medium-18 text-grey-500 truncate">
@@ -76,8 +76,6 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           </p>
         </div>
         
-        
-
         
 
         {/*Event Order Details */}
@@ -89,7 +87,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         ) : (
           /*Event Organizer Name */
           <Link href={`/events/${event._id}`} className="flex gap-1 self-end items-start w-fit mt-4 hover:border-b-black hover:border-b-2">
-            <p className="p-medium-16 md:p-medium-18 text-primary">Learn More</p>
+            <p className="p-medium-16 md:p-medium-18 text-primary">{isTicket ? 'Ticket Details' : 'Learn More'}</p>
             <Image src="/assets/icons/goto.svg" alt="search" width={24} height={24} />
           </Link>
         )}
