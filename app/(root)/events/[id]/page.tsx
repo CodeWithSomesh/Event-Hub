@@ -110,7 +110,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
       <section className="wrapper my- flex flex-col gap-8 md:gap-12 mt-4">
         <Collection 
-            data={relatedEvents?.data}
+            object={relatedEvents?.data}
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Events"

@@ -20,8 +20,6 @@ const page = async ({ searchParams }: SearchParamProps) => {
     const orders = await getOrdersByUser({ userId, page: ordersPage})
 
     const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
-    const ticketID = orders?.data.map((order: IOrder) => order._id) || [];
-    console.log(ticketID)
     const organizedEvents = await getEventsByUser({ userId, page: eventsPage })
 
   return (
@@ -32,7 +30,7 @@ const page = async ({ searchParams }: SearchParamProps) => {
 
       <section className="wrapper my-8">
         <Collection 
-          data={orderedEvents}
+          object={orders?.data}
           emptyTitle="No event tickets purchased yet"
           emptyStateSubtext="No worries - plenty of exciting events to explore!"
           collectionType="My_Tickets"
@@ -40,16 +38,15 @@ const page = async ({ searchParams }: SearchParamProps) => {
           page={ordersPage}
           urlParamName="ordersPage"
           totalPages={orders?.totalPages}
-          ticketID={ticketID}
         />
       </section>
 
       {/* My Events */}
-      <HoverHeader titlePlaceholder='Events' buttonPlaceholder='Publish New Event'/>
+      <HoverHeader titlePlaceholder='My Events' buttonPlaceholder='Publish New Event'/>
 
       <section className="wrapper my-8">
         <Collection 
-          data={organizedEvents?.data}
+          object={organizedEvents?.data}
           emptyTitle="No events have been created yet"
           emptyStateSubtext="Go create some now"
           collectionType="Events_Organized"

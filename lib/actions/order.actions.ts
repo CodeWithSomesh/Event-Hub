@@ -158,77 +158,26 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
 // POPULATE EVENT
 const populateOrder = async(query:any) => {
   return query
-      .populate({path: 'buyer', model: User, select: '_id firstName lastName'})
-      .populate({path: 'event', model: Event, select: '_id name'})
+      .populate({path: 'buyer', model: User, select: '_id firstName lastName email'})
+      .populate({path: 'event', model: Event, select: '_id eventTitle location startDateTime endDateTime'})
 }
 
 // GET ONLY ONE EVENT BY ID
 export const getOrderByEventId = async (eventID: string, userId: string) => {
 
   try{
+      
       //Connect to the Database
       await connectToDatabase();
 
-      // Finding All Orders by its Event ID
-      if (!eventID) throw new Error('Event ID is required')
-        const eventObjectId = new ObjectId(eventID)
-    
-        const orders = await Order.aggregate([
-          {
-            $lookup: {
-              from: 'users',
-              localField: 'buyer',
-              foreignField: '_id',
-              as: 'buyer',
-            },
-          },
-          {
-            $unwind: '$buyer',
-          },
-          {
-            $lookup: {
-              from: 'events',
-              localField: 'event',
-              foreignField: '_id',
-              as: 'event',
-            },
-          },
-          {
-            $unwind: '$event',
-          },
-          {
-            $project: {
-              _id: 1,
-              totalAmount: 1,
-              createdAt: 1,
-              eventTitle: '$event.eventTitle',
-              eventID: '$event._id',
-              buyerId: '$buyer._id',
-              buyer: {
-                $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
-              },
-            },
-          },
-          {
-            $match: {
-              $and: [{ eventID: eventObjectId }],
-            },
-          },
-        ])
-      //console.log(orders)
+      // Finding an Order by its ID, then populate it
+      const order = await populateOrder(Order.findById(eventID))
 
-      //Filtering out Order that only match with User ID 
-      const order = orders.filter(data => data.buyerId.toString() === userId);
-      //console.log(userId);
-      //console.log(order);
-
-      //Also need to find Ticket ID cuz what users have more tickets for the same event
-
-
-      // If there is no such order then display this error
-      if (!order || order.length === 0){
-          throw new Error('Order not found in Database for the given event ID')
+      // If there is no such event then display this error
+      if (!order){
+          throw new Error('Order by the given ID is not found in Database')
       }
+
 
       return JSON.parse(JSON.stringify(order));
   } catch (error) {

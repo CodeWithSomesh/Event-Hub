@@ -14,8 +14,9 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const event = await getEventById(id)
+  
   const order = await getOrderByEventId(id, userId)
+  const event = await getEventById(order.event._id)
 
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId : event.category._id,
@@ -25,6 +26,9 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
   return (
     <>
+      {/*Title */}
+      <HoverHeader titlePlaceholder='Ticket Details'/>
+
       <section className="flex justify-center bg-dotted-pattern bg-contain border-b">
           
         {/*Ticket Details */}
@@ -34,35 +38,57 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
             {/*Ticket ID*/}
             <img 
               src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event.eventTitle}`} 
-              alt="hero image" className="min-h-[300px] mb-4"
+              alt="hero image" className="min-h-[300px] mb-6"
             />
 
-            <p className=" p-regular-20 text-gray-400">Ticket ID</p>
-            <p className="text-2xl font-medium">{order[0]._id}</p>
+            <p className="font-normal text-center">Ticket ID: {order._id}</p>
           </div>
           
 
           <div className="flex w-full flex-col gap-8 p-5 md:px-8">
-            <div className="flex flex-col gap-6">
-              {/*Title */}
-              <h2 className='h2-bold text-center'>Ticket Details</h2>
-            </div>
-
+    
 
 
             <div className="flex flex-col gap-5">
               
               {/*Event Title */}
-              <div className=" items-center gap-2 mt-2">
+              <div className="gap-2 mt-2">
                 <p className=" p-regular-20 text-gray-400">Event Name</p>
                 <p className="text-2xl font-medium">{event.eventTitle}</p>
               </div>
 
               {/*Event ID */}
-              <div className=" items-center gap-2 mt-2">
+              <div className="gap-2 mt-2">
                 <p className=" p-regular-20 text-gray-400">Event ID</p>
                 <p className="text-2xl font-medium">{event._id}</p>
               </div>
+
+              {/*Event Location */}
+              <div className="gap-2 mt-2">
+                <p className=" p-regular-20 text-gray-400">Event Location</p>
+                <p className="text-2xl font-medium">{event.location}</p>
+              </div>
+
+              {/*Event Dates  */}
+              <div className="flex gap-2 mt-2 justify-between">
+                <div>
+                  <p className=" p-regular-20 text-gray-400">Event Start Date</p>
+                  <p className="text-2xl font-medium">
+                    {formatDateTime(event.startDateTime).dateOnly}, {' '}
+                    {formatDateTime(event.startDateTime).timeOnly} 
+                  </p>
+                </div>
+
+                <div>
+                  <p className=" p-regular-20 text-gray-400">Event Start Date</p>
+                  <p className="text-2xl font-medium">
+                    {formatDateTime(event.endDateTime).dateOnly}, {' '}
+                    {formatDateTime(event.endDateTime).timeOnly}
+                  </p>
+                </div>
+              </div>
+
+              
 
               
 
@@ -165,7 +191,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
       <section className="wrapper my- flex flex-col gap-8 md:gap-12 mt-4">
         <Collection 
-            data={relatedEvents?.data}
+            object={relatedEvents?.data}
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Events"
