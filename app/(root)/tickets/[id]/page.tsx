@@ -8,7 +8,7 @@ import { formatDateTime } from '@/lib/utils'
 import { SearchParamProps } from '@/types'
 import Image from 'next/image'
 import React from 'react'
-import { Button } from '@/components/ui/button'
+
 import { DeleteConfirmation } from '@/components/shared/DeleteConfirmation'
 
 const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
@@ -34,7 +34,21 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
       <section className="flex justify-center bg-dotted-pattern bg-contain border-b md:py-8">
           
         {/*Ticket Details */}
-        <div className="grid grid-cols-1 md:grid-cols-[55%_45%] md:max-w-7xl md:w-full">
+        <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-8 md:max-w-7xl md:w-full">
+
+          <div className='mx-auto items-center my-5 md:my-8'>
+            {/*Ticket QR Code Image*/}
+            <img 
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event.eventTitle}`} 
+              alt="hero image" className="min-h-[450px] mb-6 border-8 p-2 border-primary rounded-md"
+            />
+            {/*Ticket ID*/}
+            <p className="font-normal text-center">Ticket ID: {order._id}</p>
+
+            {/*Delete Ticket Button*/}
+            <DeleteConfirmation orderId={order._id} />
+
+          </div>
 
           <div className="flex w-full flex-col gap-8 p-5 md:px-8">
     
@@ -146,23 +160,6 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
             </div>
           </div>
 
-
-          <div className='mx-auto my-5 md:my-8'>
-            {/*Ticket QR Code Image*/}
-            <img 
-              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event.eventTitle}`} 
-              alt="hero image" className="min-h-[480px] mb-6 border-8 p-2 border-primary rounded-md"
-            />
-            {/*Ticket ID*/}
-            <p className="font-normal text-center">Ticket ID: {order._id}</p>
-
-            <DeleteConfirmation eventId={event._id} />
-
-            <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary mt-8 hover:scale-110"> 
-              Delete Ticket
-            </Button>
-          </div>
-          
         </div>
       </section>
 

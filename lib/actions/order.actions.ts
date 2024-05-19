@@ -1,7 +1,7 @@
 "use server"
 
 import Stripe from 'stripe';
-import { CheckoutOrderParams, CreateOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
+import { CheckoutOrderParams, CreateOrderParams, DeleteOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
 import { redirect } from 'next/navigation';
 import { handleError } from '../utils';
 import { connectToDatabase } from '../database';
@@ -9,7 +9,7 @@ import Order from '../database/models/order.model';
 import Event from '../database/models/event.model';
 import {ObjectId} from 'mongodb';
 import User from '../database/models/user.model';
-import Category from "../database/models/category.model";
+import { revalidatePath } from 'next/cache'
 
 export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -161,7 +161,7 @@ const populateOrder = async(query:any) => {
       .populate({path: 'event', model: Event, select: '_id eventTitle location startDateTime endDateTime organizer'})
 }
 
-// GET ONLY ONE EVENT BY ID
+// GET ONLY ONE ORDER BY ID
 export const getOrderById = async (eventID: string, userId: string) => {
 
   try{
@@ -180,6 +180,25 @@ export const getOrderById = async (eventID: string, userId: string) => {
       console.log(order)
 
       return JSON.parse(JSON.stringify(order));
+  } catch (error) {
+      handleError(error)
+  }
+}
+
+// DELETE ORDER BY ID
+export const deleteOrder = async ({orderId, path} : DeleteOrderParams) => {
+
+  try{
+      //Connect to the Database
+      await connectToDatabase();
+
+      // Finding an Order by its ID and Delete it 
+      const deletedOrder = await Order.findByIdAndDelete(orderId)
+
+      //After successfully deleting, clear the cache and refetch the events since the events structure has changed
+      if (deletedOrder) redirect('/profile')  
+
+      return JSON.parse(JSON.stringify(deletedOrder));
   } catch (error) {
       handleError(error)
   }

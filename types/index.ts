@@ -52,7 +52,7 @@ export type CreateEventParams = {
   }
   
   export type DeleteEventParams = {
-    eventId: string;
+    eventId?: string;
     path: string;
   }
   
@@ -129,6 +129,11 @@ export type CreateEventParams = {
     userId: string | null
     limit?: number
     page: string | number | null
+  }
+
+  export type DeleteOrderParams = {
+    orderId?: string;
+    path : string 
   }
   
   // ====== URL QUERY ====== PARAMS
