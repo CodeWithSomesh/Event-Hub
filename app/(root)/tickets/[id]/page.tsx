@@ -3,7 +3,7 @@ import Collection from '@/components/shared/Collection'
 import HoverHeader from '@/components/shared/HoverHeader'
 import { auth } from '@clerk/nextjs/server'
 import { getEventById, getRelatedEventsByCategory } from '@/lib/actions/event.actions'
-import { getOrderByEventId } from '@/lib/actions/order.actions'
+import { getOrderById } from '@/lib/actions/order.actions'
 import { formatDateTime } from '@/lib/utils'
 import { SearchParamProps } from '@/types'
 import Image from 'next/image'
@@ -15,7 +15,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
   const userId = sessionClaims?.userId as string;
 
   
-  const order = await getOrderByEventId(id, userId)
+  const order = await getOrderById(id, userId)
   const event = await getEventById(order.event._id)
 
   const relatedEvents = await getRelatedEventsByCategory({
@@ -29,18 +29,18 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
       {/*Title */}
       <HoverHeader titlePlaceholder='Ticket Details'/>
 
-      <section className="flex justify-center bg-dotted-pattern bg-contain border-b">
+      <section className="flex justify-center bg-dotted-pattern bg-contain border-b md:py-8">
           
         {/*Ticket Details */}
         <div className="grid grid-cols-1 md:grid-cols-[45%_55%] md:max-w-7xl md:w-full">
 
           <div className='mx-auto my-5 md:my-8'>
-            {/*Ticket ID*/}
+            {/*Ticket QR Code Image*/}
             <img 
               src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event.eventTitle}`} 
-              alt="hero image" className="min-h-[300px] mb-6"
+              alt="hero image" className="min-h-[480px] mb-6 border-8 p-2 border-primary rounded-md"
             />
-
+            {/*Ticket ID*/}
             <p className="font-normal text-center">Ticket ID: {order._id}</p>
           </div>
           
@@ -53,44 +53,106 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               
               {/*Event Title */}
               <div className="gap-2 mt-2">
-                <p className=" p-regular-20 text-gray-400">Event Name</p>
-                <p className="text-2xl font-medium">{event.eventTitle}</p>
+                <p className=" p-regular-16 text-gray-400">Event Name</p>
+                <p className="text-xl font-medium">{event.eventTitle}</p>
               </div>
 
               {/*Event ID */}
               <div className="gap-2 mt-2">
-                <p className=" p-regular-20 text-gray-400">Event ID</p>
-                <p className="text-2xl font-medium">{event._id}</p>
+                <p className=" p-regular-16 text-gray-400">Event ID</p>
+                <p className="text-xl font-medium">{event._id}</p>
               </div>
 
               {/*Event Location */}
               <div className="gap-2 mt-2">
-                <p className=" p-regular-20 text-gray-400">Event Location</p>
-                <p className="text-2xl font-medium">{event.location}</p>
+                <p className=" p-regular-16 text-gray-400">Event Location</p>
+                <p className="text-xl font-medium">{event.location}</p>
               </div>
 
               {/*Event Dates  */}
-              <div className="flex gap-2 mt-2 justify-between">
-                <div>
-                  <p className=" p-regular-20 text-gray-400">Event Start Date</p>
-                  <p className="text-2xl font-medium">
+              <div className="grid grid-cols-[55%_45%] gap-6 mt-2 justify-between">
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Event Start Date</p>
+                  <p className="text-xl font-medium">
                     {formatDateTime(event.startDateTime).dateOnly}, {' '}
                     {formatDateTime(event.startDateTime).timeOnly} 
                   </p>
                 </div>
 
-                <div>
-                  <p className=" p-regular-20 text-gray-400">Event Start Date</p>
-                  <p className="text-2xl font-medium">
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Event End Date</p>
+                  <p className="text-xl font-medium">
                     {formatDateTime(event.endDateTime).dateOnly}, {' '}
                     {formatDateTime(event.endDateTime).timeOnly}
                   </p>
-                </div>
+                </div> 
               </div>
 
-              
+              {/*Dashed Border  */}
+              <div className='border-2 border-primary border-dashed my-4'></div>
 
-              
+              {/*Participant Name & ID  */}
+              <div className="grid grid-cols-[55%_45%] gap-6 justify-between">
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Participant Name</p>
+                  <p className="text-xl font-medium">
+                    {order.buyer.firstName} {' '} {order.buyer.lastName}
+                  </p>
+                </div>
+
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Participant ID</p>
+                  <p className="text-xl font-medium">
+                    {order.buyer._id}
+                  </p>
+                </div> 
+              </div>
+
+              {/*Participant Email & Purchase Ticket Date  */}
+              <div className="grid grid-cols-[55%_45%] gap-6 justify-between ">
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Participant Email</p>
+                  <p className="text-xl font-medium break-words">
+                    {order.buyer.email}
+                  </p>
+                </div>
+
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Purchase Date</p>
+                  <p className="text-xl font-medium">
+                    {formatDateTime(order.createdAt).dateOnly}
+                  </p>
+                </div> 
+              </div>
+
+              {/*Dashed Border  */}
+              <div className='border-2 border-primary border-dashed my-4'></div>
+
+              {/*Single Ticket Price & Number Of Tickets */}
+              <div className="grid grid-cols-[55%_45%] gap-6 justify-between ">
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Ticket Price</p>
+                  <p className="text-xl font-medium break-words">
+                    {order.buyer.email}
+                  </p>
+                </div>
+
+                <div className=''>
+                  <p className=" p-regular-16 text-gray-400">Number of Tickets</p>
+                  <p className="text-xl font-medium">
+                    {formatDateTime(order.createdAt).dateOnly}
+                  </p>
+                </div> 
+              </div>
+
+              {/*Participant Email & Purchase Ticket Date  */}
+              <div className="grid grid-cols-[55%_45%] gap-6 mt-4 justify-between items-center">
+                  <p className="p-semibold-20 text-gray-400">Total Price:</p>
+                  <div className='flex justify-between border-y-2 border-black py-2 p-bold-24 text-primary'>
+                    <p className="">RM</p>
+                    <p className=''>{order.totalAmount}</p>
+                  </div>
+              </div>
 
             </div>
           </div>

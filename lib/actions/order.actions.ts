@@ -147,7 +147,6 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
           select: '_id firstName lastName',
         },
       })
-    console.log(orders)
     const ordersCount = await Order.distinct('event._id').countDocuments(conditions)
 
     return { data: JSON.parse(JSON.stringify(orders)), totalPages: Math.ceil(ordersCount / limit) }
@@ -159,11 +158,11 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
 const populateOrder = async(query:any) => {
   return query
       .populate({path: 'buyer', model: User, select: '_id firstName lastName email'})
-      .populate({path: 'event', model: Event, select: '_id eventTitle location startDateTime endDateTime'})
+      .populate({path: 'event', model: Event, select: '_id eventTitle location startDateTime endDateTime organizer'})
 }
 
 // GET ONLY ONE EVENT BY ID
-export const getOrderByEventId = async (eventID: string, userId: string) => {
+export const getOrderById = async (eventID: string, userId: string) => {
 
   try{
       
@@ -178,6 +177,7 @@ export const getOrderByEventId = async (eventID: string, userId: string) => {
           throw new Error('Order by the given ID is not found in Database')
       }
 
+      console.log(order)
 
       return JSON.parse(JSON.stringify(order));
   } catch (error) {
