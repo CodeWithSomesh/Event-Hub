@@ -90,7 +90,7 @@ export default async function Home() {
 
             {/* Hero Section Explore Button */}
             <Link href="/events">
-              <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary"> 
+              <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary hover:scale-110"> 
                   Explore Now
               </Button>
             </Link>

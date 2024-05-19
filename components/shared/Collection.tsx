@@ -30,7 +30,7 @@ const Collection = ({object, emptyTitle, emptyStateSubtext, page, totalPages = 0
 
               return (
                 <li key={data._id} className="flex justify-center">
-                  <Card event={data} hasOrderLink={hasOrderLink} isTicket={isTicket} order={data} />
+                  <Card event={!isTicket ? data : data.event} hasOrderLink={hasOrderLink} isTicket={isTicket} order={data} />
                 </li>
               )
             })}

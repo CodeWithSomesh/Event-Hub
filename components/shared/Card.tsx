@@ -21,12 +21,12 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
   const isEventCreator = userId === event?.organizer?._id.toString();
 
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-lg
-    bg-white shadow-lg transition-all hover:shadow-2xl hover:scale-105 md:min-h-[438px] border-2">
+    <div className={`group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-lg
+    bg-white shadow-lg transition-all hover:shadow-2xl hover:scale-105 md:min-h-[550px] border-2 ${isTicket ? 'md:min-h-[500px]' : ''}`}>
       <Link 
         href={isTicket ? `/tickets/${order?._id}` : `/events/${event?._id}`} 
-        style={{backgroundImage: `url(${event?.imageUrl})`}}
-        className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
+        style={isTicket ? {backgroundImage: `url(https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event?.imageUrl})`} :{backgroundImage: `url(${event?.imageUrl})`}}
+        className={`flex-center flex-grow bg-no-repeat bg-center ${isTicket ? 'border-primary border-4 rounded-t-md':'bg-cover bg-gray-50  text-grey-500'}`}
       />
 
       {/* If the user is the event organizer, then Update & Delete buttons will be displayed */}
@@ -42,17 +42,18 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
 
       {/* Conditional rendering: If not tickets then run this */}
       <Link href={isTicket ? `/tickets/${order?._id}` : `/events/${event?._id}`} 
-        className={`flex flex-col gap-3 p-5 md:gap-6 ${hasOrderLink ? 'min-h-[170px]' : 'min-h-[230px]'}`}
+        className={`flex flex-col gap-3 p-5 md:gap-6 min-h-[250px]`}
       > 
 
-       {<div className="flex gap-2 justify-between">
+       {!isTicket && 
+       <div className="flex gap-2 justify-between">
           {/*Event Price */}
           <span className="p-semibold-16 rounded-full bg-green-100 px-6 py-2 text-green-60">
             {event?.isFree ? 'FREE' : `RM ${event?.price}`}
           </span>
           {/*Event Category */}
           <p className="p-semibold-14 rounded-full bg-grey-500/10 px-6 py-2 text-grey-500 line-clamp-1 flex items-center ">
-            {!isTicket ? event?.category?.name : order?.event?.eventTitle}
+            {event?.category?.name}
           </p>
         </div>}
 
