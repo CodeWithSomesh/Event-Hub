@@ -35,7 +35,7 @@ export default async function BrowseEvents({searchParams} : SearchParamProps) {
             </div>
 
             <Collection 
-                data={events?.data}
+                object={events?.data}
                 emptyTitle="No Events Found" //If no events found
                 emptyStateSubtext="Come back later"
                 collectionType="All_Events"

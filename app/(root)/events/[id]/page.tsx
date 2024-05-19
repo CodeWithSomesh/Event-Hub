@@ -19,7 +19,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
   return (
     <>
-      <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain border-b mb-8">
+      <section className="flex justify-center  bg-dotted-pattern bg-contain border-b">
           
         {/*Event Details */}
         <div className="grid grid-cols-1 md:grid-cols-[45%_55%] md:max-w-7xl">
@@ -110,7 +110,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
       <section className="wrapper my- flex flex-col gap-8 md:gap-12 mt-4">
         <Collection 
-            data={relatedEvents?.data}
+            object={relatedEvents?.data}
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Events"

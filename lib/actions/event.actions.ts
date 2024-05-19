@@ -43,12 +43,12 @@ const populateEvent = async(query:any) => {
         .populate({path: 'category', model: Category, select: '_id name'})
 }
 
-// GET VATEGORY BY THEIR NAME
+// GET CATEGORY BY THEIR NAME
 const getCategoryByName = async (name: string) => {
   return Category.findOne({ name: { $regex: name, $options: 'i' } })
 }
 
-// GET EVENT BY ID
+// GET ONLY ONE EVENT BY ID
 export const getEventById = async (eventId: string) => {
 
     try{

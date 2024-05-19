@@ -135,6 +135,10 @@ body {
     @apply font-bold text-[24px] leading-[36px];
   }
 
+  .p-semibold-24 {
+    @apply font-semibold text-[24px] leading-[36px];
+  }
+
   .p-medium-24 {
     @apply font-medium text-[24px] leading-[36px];
   }

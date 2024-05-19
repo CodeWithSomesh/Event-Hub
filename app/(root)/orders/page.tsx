@@ -3,6 +3,7 @@ import { getOrdersByEvent } from '@/lib/actions/order.actions'
 import { formatDateTime, formatPrice } from '@/lib/utils'
 import { SearchParamProps } from '@/types'
 import { IOrderItem } from '@/lib/database/models/order.model'
+import HoverHeader from '@/components/shared/HoverHeader'
 
 const Orders = async ({ searchParams }: SearchParamProps) => {
   const eventId = (searchParams?.eventId as string) || ''
@@ -12,15 +13,13 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
 
   return (
     <>
-      <section className=" bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
-        <h3 className="wrapper h3-bold text-center">Orders</h3>
-      </section>
+      <HoverHeader titlePlaceholder='Order Details' />
 
       <section className="wrapper mt-8">
         <Searchbar  placeholder="Search By Buyer Name..." />
       </section>
 
-      <section className="wrapper overflow-x-auto">
+      <div className="wrapper overflow-x-auto">
         <table className="w-full border-collapse border-t">
           <thead>
             <tr className="p-medium-14 border-b text-grey-500">
@@ -61,7 +60,7 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
             )}
           </tbody>
         </table>
-      </section>
+      </div>
     </>
   )
 }
