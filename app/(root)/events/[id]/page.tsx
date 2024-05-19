@@ -19,7 +19,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
   return (
     <>
-      <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain border-b mb-8">
+      <section className="flex justify-center  bg-dotted-pattern bg-contain border-b">
           
         {/*Event Details */}
         <div className="grid grid-cols-1 md:grid-cols-[45%_55%] md:max-w-7xl">

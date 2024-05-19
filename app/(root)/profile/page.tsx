@@ -20,6 +20,8 @@ const page = async ({ searchParams }: SearchParamProps) => {
     const orders = await getOrdersByUser({ userId, page: ordersPage})
 
     const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
+    const ticketID = orders?.data.map((order: IOrder) => order._id) || [];
+    console.log(ticketID)
     const organizedEvents = await getEventsByUser({ userId, page: eventsPage })
 
   return (
@@ -38,11 +40,12 @@ const page = async ({ searchParams }: SearchParamProps) => {
           page={ordersPage}
           urlParamName="ordersPage"
           totalPages={orders?.totalPages}
+          ticketID={ticketID}
         />
       </section>
 
-      {/* Events Organized */}
-      <HoverHeader titlePlaceholder='Events Organized' buttonPlaceholder='Publish New Event'/>
+      {/* My Events */}
+      <HoverHeader titlePlaceholder='Events' buttonPlaceholder='Publish New Event'/>
 
       <section className="wrapper my-8">
         <Collection 

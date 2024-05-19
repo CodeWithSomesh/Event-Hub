@@ -9,6 +9,7 @@ import Order from '../database/models/order.model';
 import Event from '../database/models/event.model';
 import {ObjectId} from 'mongodb';
 import User from '../database/models/user.model';
+import Category from "../database/models/category.model";
 
 export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -103,6 +104,7 @@ export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEve
           createdAt: 1,
           eventTitle: '$event.eventTitle',
           eventId: '$event._id',
+          buyerId: '$buyer._id',
           buyer: {
             $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
           },
@@ -145,11 +147,91 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
           select: '_id firstName lastName',
         },
       })
-
+    console.log(orders)
     const ordersCount = await Order.distinct('event._id').countDocuments(conditions)
 
     return { data: JSON.parse(JSON.stringify(orders)), totalPages: Math.ceil(ordersCount / limit) }
   } catch (error) {
     handleError(error)
+  }
+}
+// POPULATE EVENT
+const populateOrder = async(query:any) => {
+  return query
+      .populate({path: 'buyer', model: User, select: '_id firstName lastName'})
+      .populate({path: 'event', model: Event, select: '_id name'})
+}
+
+// GET ONLY ONE EVENT BY ID
+export const getOrderByEventId = async (eventID: string, userId: string) => {
+
+  try{
+      //Connect to the Database
+      await connectToDatabase();
+
+      // Finding All Orders by its Event ID
+      if (!eventID) throw new Error('Event ID is required')
+        const eventObjectId = new ObjectId(eventID)
+    
+        const orders = await Order.aggregate([
+          {
+            $lookup: {
+              from: 'users',
+              localField: 'buyer',
+              foreignField: '_id',
+              as: 'buyer',
+            },
+          },
+          {
+            $unwind: '$buyer',
+          },
+          {
+            $lookup: {
+              from: 'events',
+              localField: 'event',
+              foreignField: '_id',
+              as: 'event',
+            },
+          },
+          {
+            $unwind: '$event',
+          },
+          {
+            $project: {
+              _id: 1,
+              totalAmount: 1,
+              createdAt: 1,
+              eventTitle: '$event.eventTitle',
+              eventID: '$event._id',
+              buyerId: '$buyer._id',
+              buyer: {
+                $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
+              },
+            },
+          },
+          {
+            $match: {
+              $and: [{ eventID: eventObjectId }],
+            },
+          },
+        ])
+      //console.log(orders)
+
+      //Filtering out Order that only match with User ID 
+      const order = orders.filter(data => data.buyerId.toString() === userId);
+      //console.log(userId);
+      //console.log(order);
+
+      //Also need to find Ticket ID cuz what users have more tickets for the same event
+
+
+      // If there is no such order then display this error
+      if (!order || order.length === 0){
+          throw new Error('Order not found in Database for the given event ID')
+      }
+
+      return JSON.parse(JSON.stringify(order));
+  } catch (error) {
+      handleError(error)
   }
 }
