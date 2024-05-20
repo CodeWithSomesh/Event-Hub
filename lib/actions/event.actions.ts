@@ -70,7 +70,7 @@ export const getEventById = async (eventId: string) => {
 }
 
 // FETCH/GET ALL EVENTS
-export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEventsParams) => {
+export const getAllEvents = async ({query, limit, page, category}: GetAllEventsParams) => {
 
     try{
         //Connect to the Database
@@ -149,7 +149,7 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
 
 
 // GET EVENTS BY ORGANIZER
-export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
+export async function getEventsByUser({ userId, limit = 3, page }: GetEventsByUserParams) {
     try {
       //Connect to the Database
       await connectToDatabase()

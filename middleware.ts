@@ -4,9 +4,11 @@ import {
   } from '@clerk/nextjs/server';
    
     const isProtectedRoute = createRouteMatcher([
-    '/dashboard(.*)',
-    '/forum(.*)',
+    '/profile',
     '/events/publish',
+    '/events/:id/update',
+    '/orders',
+    '/tickets/:id',
   ]);
    
   export default clerkMiddleware((auth, req) => {

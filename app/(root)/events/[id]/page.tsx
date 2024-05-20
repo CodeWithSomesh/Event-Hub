@@ -76,7 +76,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               {/*Event Location */}
               <div className="p-regular-20 flex items-center gap-2 mt-2">
                 <Image src="/assets/icons/location.svg" alt="location" width={32} height={32} />
-                <p className="p-medium-18">{event.location}</p>
+                <a className="p-medium-18 hover:border-b-black hover:border-b-2 w-fit" href={`https://maps.google.com?q=${event.location}`} target='_blank'>{event.location}</a>
               </div>
 
               {/*Event Organizer's Full Name */}
