@@ -254,7 +254,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
       </section>
 
       {/* EVENTS with the same category */}
-      <HoverHeader titlePlaceholder='Related Events' buttonPlaceholder='Explore Other Events' />
+      <HoverHeader titlePlaceholder='Related Events' buttonPlaceholder='Explore Other Events' link='/events' />
 
       <section className="wrapper my- flex flex-col gap-8 md:gap-12 mt-4">
         <Collection 

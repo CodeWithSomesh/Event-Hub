@@ -2,8 +2,9 @@ import React from 'react'
 import { Boxes } from "@/components/ui/background-boxes";
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 
-const HoverHeader = ({titlePlaceholder, buttonPlaceholder, home}: {titlePlaceholder?: string, buttonPlaceholder?: string, home?:boolean}) => {
+const HoverHeader = ({titlePlaceholder, buttonPlaceholder, home, link}: {titlePlaceholder?: string, buttonPlaceholder?: string, home?:boolean, link?: string}) => {
   return (
     <>
       {!titlePlaceholder && (
@@ -37,11 +38,14 @@ const HoverHeader = ({titlePlaceholder, buttonPlaceholder, home}: {titlePlacehol
                 <h1 className={`${titlePlaceholder ? "h3-bold text-white bg-black hover:text-primary z-10 max-w-7xl p-5 md:px-10 rounded-md" : ""}`}>
                   {titlePlaceholder}
                 </h1>
-                <Button asChild size="lg" className="bg-primary text-md font-semibold p-4 hover:bg-black hover:text-primary hidden sm:flex z-10">
-                  <Link href="/#events">
-                    {buttonPlaceholder}
-                  </Link>
-                </Button>
+                
+                <Link href={`${link}`} className="bg-primary-50 z-50 p-6 ">
+                  <div className='flex gap-1 items-center w-fit hover:border-b-black hover:border-b-2'>
+                    <p className="p-medium-18 md:p-semibold-24 text-primary">{buttonPlaceholder}</p>
+                    <Image src="/assets/icons/goto.svg" alt="search" width={26} height={26} />
+                  </div> 
+                </Link>
+
               </div>
               
             </div>

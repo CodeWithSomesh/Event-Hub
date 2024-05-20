@@ -25,7 +25,7 @@ const page = async ({ searchParams }: SearchParamProps) => {
   return (
     <>
       {/* My Tickets */}
-      <HoverHeader titlePlaceholder='My Tickets' buttonPlaceholder='Explore More Events'/>
+      <HoverHeader titlePlaceholder='My Tickets' buttonPlaceholder='Explore More Events' link='/events'/>
 
 
       <section className="wrapper my-8">
@@ -33,6 +33,7 @@ const page = async ({ searchParams }: SearchParamProps) => {
           object={orders?.data}
           emptyTitle="No event tickets purchased yet"
           emptyStateSubtext="No worries - plenty of exciting events to explore!"
+          link='/events'
           collectionType="My_Tickets"
           limit={3}
           page={ordersPage}
@@ -42,13 +43,14 @@ const page = async ({ searchParams }: SearchParamProps) => {
       </section>
 
       {/* My Events */}
-      <HoverHeader titlePlaceholder='My Events' buttonPlaceholder='Publish New Event'/>
+      <HoverHeader titlePlaceholder='My Events' buttonPlaceholder='Publish New Event' link='/events/publish'/>
 
       <section className="wrapper my-8">
         <Collection 
           object={organizedEvents?.data}
-          emptyTitle="No events have been created yet"
-          emptyStateSubtext="Go create some now"
+          emptyTitle="No events have been published yet"
+          emptyStateSubtext="Let's host some now!"
+          link='/events/publish'
           collectionType="Events_Organized"
           limit={3}
           page={eventsPage}

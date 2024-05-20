@@ -3,11 +3,14 @@ import React from 'react'
 import Card from './Card'
 import Pagination from './Pagination'
 import { IOrder } from '@/lib/database/models/order.model'
+import Link from 'next/link'
+import Image from 'next/image'
 
 type CollectionProps = {
     object: IEvent[] | IOrder[],
     emptyTitle: string, 
     emptyStateSubtext: string,
+    link?: string,
     limit: number,
     page: number | string,
     totalPages?: number,
@@ -17,7 +20,7 @@ type CollectionProps = {
 }
 
 const Collection = ({object, emptyTitle, emptyStateSubtext, page, totalPages = 0,
-    collectionType, urlParamName, ticketID}: CollectionProps) => {
+    collectionType, urlParamName, ticketID, link}: CollectionProps) => {
   return (
     <>
        {/*If there is more than 0 event then display the design below */}
@@ -43,8 +46,17 @@ const Collection = ({object, emptyTitle, emptyStateSubtext, page, totalPages = 0
         // If there is 0 events then display the design below 
         : ( 
         <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
-          <h3 className="p-bold-20 md:h5-bold">{emptyTitle}</h3>
-          <p className="p-regular-14">{emptyStateSubtext}</p>
+          <h3 className="p-bold-20 md:h3-bold">{emptyTitle}</h3>
+          {link ? (
+            // <Link href={link} className="p-medium-14 md:p-medium-18 text-primary hover:border-b-black hover:border-b-2">{emptyStateSubtext}</Link>
+            <Link href={link} className="flex gap-1 items-center w-fit hover:border-b-black hover:border-b-2">
+              <p className="p-medium-16 md:p-medium-18 text-primary">{emptyStateSubtext}</p>
+              <Image src="/assets/icons/goto.svg" alt="search" width={20} height={20} />
+            </Link>
+          ) : (
+            <p className="p-medium-14 md:p-medium-18 text-primary">{emptyStateSubtext}</p>
+          ) }
+          
         </div>
       )} 
     </>

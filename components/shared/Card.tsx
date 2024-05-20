@@ -30,13 +30,19 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
       />
 
       {/* If the user is the event organizer, then Update & Delete buttons will be displayed */}
-      {isEventCreator && (
-        <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-          <Link href={`/events/${event?._id}/update`}>
-            <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
-          </Link>
+      {!isTicket && isEventCreator && (
+        <div className="absolute right-3 top-4 flex  rounded-xl bg-white shadow-sm transition-all">
 
-          <DeleteConfirmation eventId={event?._id} />
+          <div className='p-3 rounded-xl hover:scale-110 hover:border-4 hover:border-primary'>
+            <Link href={`/events/${event?._id}/update`} >
+              <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
+            </Link>
+          </div>
+          
+          <div className='p-3 rounded-xl hover:scale-105 hover:border-4 hover:border-red-700'>
+            <DeleteConfirmation eventId={event?._id} />
+          </div>
+
         </div>
       )}
 
