@@ -43,11 +43,9 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
             {isEventCreator && (
               <div className="absolute right-3 top-6 flex rounded-xl bg-white shadow-sm transition-all">
 
-                <div className='p-3 rounded-xl hover:scale-110 hover:border-4 hover:border-primary'>
-                  <Link href={`/events/${event?._id}/update`} >
-                    <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
-                  </Link>
-                </div>
+                <Link href={`/events/${event?._id}/update`} className='p-3 rounded-xl hover:scale-110 hover:border-4 hover:border-primary' >
+                  <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
+                </Link>
                 
                 <div className=''>
                   <DeleteConfirmation eventId={event?._id} />
