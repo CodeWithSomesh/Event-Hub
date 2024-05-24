@@ -39,7 +39,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
           <div className='mx-auto my-5 md:my-8 flex flex-col justify-between'>
             <div>
               {/*Ticket QR Code Image*/}
-              <img 
+              <Image 
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event.eventTitle}`} 
                 alt="hero image" className="min-h-[450px] mb-6 border-8 p-2 border-primary rounded-md"
               />
