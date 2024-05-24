@@ -14,11 +14,11 @@ const Header = () => {
           <h1 className="lg:text-2xl font-bold text-xl">Event Hub</h1>
         </Link>
 
-        <SignedIn>
-          <nav className="hidden w-full max-w-xs md:flex-between">
-            <NavItems />
-          </nav>
-        </SignedIn>
+
+        <nav className="hidden w-full max-w-xs md:flex-between">
+          <NavItems />
+        </nav>
+
 
         <div className="flex w-32 justify-end gap-3">
           <SignedIn>

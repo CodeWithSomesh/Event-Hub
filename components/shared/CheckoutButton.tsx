@@ -7,7 +7,7 @@ import { Button } from '../ui/button'
 import Link from 'next/link'
 import Checkout from './Checkout'
 
-const CheckoutButton = ({event} : {event : IEvent}) => {
+const CheckoutButton = ({event, buttonPlaceholder} : {event : IEvent, buttonPlaceholder?: string}) => {
 
   const {user} = useUser()
   const userId = user?.publicMetadata.userId as string
@@ -25,15 +25,15 @@ const CheckoutButton = ({event} : {event : IEvent}) => {
         // If not, then display this button 
         <>
           <SignedOut> {/*If the user is signed out, then return sign in page */}
-            <Button asChild className="button rounded-full" size="lg">
+            <Button asChild className='bg-primary text-lg md:text-2xl font-bold px-4 py-[26px] hover:bg-black hover:text-primary sm:w-fit' size="lg">
               <Link href="/sign-in">
-                Get Tickets
+                {event.isFree ? 'Get Tickets' : 'Buy Tickets'}
               </Link>
             </Button>
           </SignedOut>
 
           <SignedIn>
-            <Checkout event={event} userId={userId} />
+            <Checkout event={event} userId={userId} buttonPlaceholder={buttonPlaceholder} />
           </SignedIn>
         </>
       )}
