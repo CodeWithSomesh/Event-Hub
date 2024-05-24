@@ -39,7 +39,7 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
             </Link>
           </div>
           
-          <div className='p-3 rounded-xl hover:scale-105 hover:border-4 hover:border-red-700'>
+          <div className=''>
             <DeleteConfirmation eventId={event?._id} />
           </div>
 
