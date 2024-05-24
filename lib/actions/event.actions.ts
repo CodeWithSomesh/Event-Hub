@@ -12,7 +12,6 @@ import User from "../database/models/user.model";
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation';
 import Category from "../database/models/category.model";
-import { redirect } from "next/navigation";
 
 // CREATE EVENT
 export const createEvent = async ({event, userId, path}: CreateEventParams) => {
@@ -113,7 +112,14 @@ export const deleteEvent = async ({eventId, path} : DeleteEventParams) => {
         const deletedEvent = await Event.findByIdAndDelete(eventId)
 
         //After successfully deleting, clear the cache and refetch the events since the events structure has changed
-        if (deletedEvent) revalidatePath(path) 
+        if (deletedEvent){
+          if (path.includes("events")){
+            redirect('/events') 
+          }
+          if (path.includes("profile")){
+            redirect('/profile') 
+          }
+        } 
 
         return JSON.parse(JSON.stringify(deletedEvent));
     } catch (error) {
