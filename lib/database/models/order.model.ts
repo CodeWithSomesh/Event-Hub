@@ -37,8 +37,14 @@ const OrderSchema = new Schema({
     required: true,
     unique: true,
   },
-  totalAmount: {
+  price: {
     type: String,
+  },
+  numOfTickets: {
+    type: Number,
+  },
+  totalPrice: {
+    type: Number,
   },
   event: {
     type: Schema.Types.ObjectId,

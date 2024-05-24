@@ -108,6 +108,8 @@ export type CreateEventParams = {
     eventTitle: string
     eventId: string
     price: string
+    numOfTickets: number
+    totalPrice: number
     isFree: boolean
     buyerId: string
   }
@@ -116,7 +118,9 @@ export type CreateEventParams = {
     stripeId: string
     eventId: string
     buyerId: string
-    totalAmount: string
+    price: string
+    numOfTickets: number
+    totalPrice: number
     createdAt: Date
   }
   
@@ -152,3 +156,8 @@ export type CreateEventParams = {
     params: { id: string }
     searchParams: { [key: string]: string | string[] | undefined }
   }
+
+  export interface CheckoutModalProps {
+    isBackdrop: boolean;
+    setIsBackdrop: (value: boolean) => void;
+}

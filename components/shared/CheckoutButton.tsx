@@ -6,6 +6,7 @@ import React from 'react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import Checkout from './Checkout'
+import CheckoutModal from './CheckoutModal'
 
 const CheckoutButton = ({event} : {event : IEvent}) => {
 
@@ -33,7 +34,7 @@ const CheckoutButton = ({event} : {event : IEvent}) => {
           </SignedOut>
 
           <SignedIn>
-            <Checkout event={event} userId={userId} />
+            <CheckoutModal event={event} userId={userId} />
           </SignedIn>
         </>
       )}
