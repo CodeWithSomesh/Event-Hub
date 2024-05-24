@@ -10,7 +10,7 @@ loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
-const Checkout = ({event, userId, buttonPlaceholder} : {event: IEvent, userId: string, buttonPlaceholder?: string}) => {
+const Checkout = ({event, userId} : {event: IEvent, userId: string}) => {
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -39,18 +39,9 @@ const Checkout = ({event, userId, buttonPlaceholder} : {event: IEvent, userId: s
 
   return (
     <form action={onCheckOut} method='post'>
-
-      {buttonPlaceholder ? (
-        <Button type='submit' role='link' size='lg' className='bg-primary text-lg md:text-2xl font-bold px-4 py-[26px] hover:bg-black hover:text-primary sm:w-fit'>
-          {buttonPlaceholder}
-        </Button>
-      ) : (
-        <Button type='submit' role='link' size='lg' className='bg-primary text-lg md:text-2xl font-bold px-4 py-[26px] hover:bg-black hover:text-primary sm:w-fit'>
-          {event.isFree ? 'Get Tickets' : 'Buy Tickets'}
-        </Button>
-      )}
-
-      
+      <Button type='submit' role='link' size='lg' className='bg-primary text-lg md:text-2xl font-bold px-4 py-8 hover:bg-black hover:text-primary sm:w-fit'>
+        {event.isFree ? 'Get Ticket' : 'Buy Ticket'}
+      </Button>
 
     </form>
   )

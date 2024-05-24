@@ -22,16 +22,14 @@ import Link from 'next/link'
 
 export const DeleteConfirmation = ({ eventId, orderId }: { eventId?: string, orderId?: string }) => {
   const pathname = usePathname()
-  // console.log(pathname)
+  console.log(pathname)
   let [isPending, startTransition] = useTransition()
 
   return (
     <AlertDialog>
       <AlertDialogTrigger className='w-full'>
         {eventId ? (
-          <div className="p-3 rounded-xl hover:scale-110 hover:border-4 hover:border-red-700 flex">
-            <Image src="/assets/icons/delete.svg" alt="edit" width={20} height={20} />
-          </div>
+          <Image src="/assets/icons/delete.svg" alt="edit" width={20} height={20} />
         ) : (
 
             <Button className="bg-red-600 font-bold text-2xl py-8 px-8 w-full mt-8 hover:scale-110 hover:bg-red-600 transition-all"> 

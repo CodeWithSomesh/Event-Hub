@@ -16,7 +16,7 @@ export default async function BrowseEvents({searchParams} : SearchParamProps) {
       query: searchText,
       category,
       page,
-      limit: 15
+      limit: 6
     })
   
     // console.log(events) 

@@ -10,6 +10,7 @@ import { connectToDatabase } from "../database";
 import Event from "../database/models/event.model";
 import User from "../database/models/user.model";
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation';
 import Category from "../database/models/category.model";
 import { redirect } from "next/navigation";
 
@@ -71,7 +72,7 @@ export const getEventById = async (eventId: string) => {
 }
 
 // FETCH/GET ALL EVENTS
-export const getAllEvents = async ({query, limit, page, category}: GetAllEventsParams) => {
+export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEventsParams) => {
 
     try{
         //Connect to the Database
@@ -112,15 +113,7 @@ export const deleteEvent = async ({eventId, path} : DeleteEventParams) => {
         const deletedEvent = await Event.findByIdAndDelete(eventId)
 
         //After successfully deleting, clear the cache and refetch the events since the events structure has changed
-        if (deletedEvent){
-
-          if (path.includes("events")){
-            redirect('/events') 
-          }
-          if (path.includes("profile")){
-            redirect('/profile') 
-          }
-        } 
+        if (deletedEvent) revalidatePath(path) 
 
         return JSON.parse(JSON.stringify(deletedEvent));
     } catch (error) {
@@ -158,7 +151,7 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
 
 
 // GET EVENTS BY ORGANIZER
-export async function getEventsByUser({ userId, limit = 3, page }: GetEventsByUserParams) {
+export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
     try {
       //Connect to the Database
       await connectToDatabase()

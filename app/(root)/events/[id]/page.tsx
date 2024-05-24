@@ -6,25 +6,16 @@ import { formatDateTime } from '@/lib/utils'
 import { SearchParamProps } from '@/types'
 import Image from 'next/image'
 import React from 'react'
-import { auth } from '@clerk/nextjs/server'
-import Link from 'next/link'
-import {DeleteConfirmation} from '@/components/shared/DeleteConfirmation'
 
 const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
-  // Getting Event by their ID
+
   const event = await getEventById(id)
 
-  // Getting Events with the same category
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId : event.category._id,
     eventId: event._id,
     page: searchParams.page as string,
   })
-
-  // Getting users from Clerk 
-  const { sessionClaims } = auth();
-  const userId = sessionClaims?.userId as string;
-  const isEventCreator = userId === event?.organizer?._id.toString();
 
   return (
     <>
@@ -32,6 +23,13 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
           
         {/*Event Details */}
         <div className="grid grid-cols-1 md:grid-cols-[45%_55%] md:max-w-7xl">
+<<<<<<< Updated upstream
+          {/*Event Image */}
+          <Image 
+            src={event.imageUrl} alt="hero image" width={1000}
+            height={1000} className="h-full min-h-[300px] object-cover object-center"
+          />
+=======
           <div className="relative">
             {/*Event Image */}
             <Image 
@@ -55,6 +53,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
             )}
           </div>
           
+>>>>>>> Stashed changes
 
           <div className="flex w-full flex-col gap-8 p-5 md:px-8">
             <div className="flex flex-col gap-6">
@@ -103,7 +102,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               {/*Event Location */}
               <div className="p-regular-20 flex items-center gap-2 mt-2">
                 <Image src="/assets/icons/location.svg" alt="location" width={32} height={32} />
-                <a className="p-medium-18 hover:border-b-black hover:border-b-2 w-fit" href={`https://maps.google.com?q=${event.location}`} target='_blank' rel="noreferrer">{event.location}</a>
+                <p className="p-medium-18">{event.location}</p>
               </div>
 
               {/*Event Organizer's Full Name */}

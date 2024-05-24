@@ -39,7 +39,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
           <div className='mx-auto my-5 md:my-8 flex flex-col justify-between'>
             <div>
               {/*Ticket QR Code Image*/}
-              <Image 
+              <img 
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event.eventTitle}`} 
                 alt="hero image" className="min-h-[450px] mb-6 border-8 p-2 border-primary rounded-md"
               />
@@ -194,7 +194,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                 </div>
 
 
-                <CheckoutButton event={event} buttonPlaceholder="Buy More Tickets" />
+                <CheckoutButton event={event} />
                 
               </div>
             </div>
@@ -222,9 +222,9 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               </div>
 
               {/*Event Location */}
-              <div className="p-regular-20 flex items-center gap-2 mt-2 ">
+              <div className="p-regular-20 flex items-center gap-2 mt-2">
                 <Image src="/assets/icons/location.svg" alt="location" width={32} height={32} />
-                <a className="p-medium-18 hover:border-b-black hover:border-b-2 w-fit" href={`https://maps.google.com?q=${event.location}`} target='_blank' rel="noreferrer">{event.location}</a>
+                <p className="p-medium-18">{event.location}</p>
               </div>
 
               {/*Event Organizer's Full Name */}
