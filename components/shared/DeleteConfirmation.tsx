@@ -22,7 +22,7 @@ import Link from 'next/link'
 
 export const DeleteConfirmation = ({ eventId, orderId }: { eventId?: string, orderId?: string }) => {
   const pathname = usePathname()
-  // console.log(pathname)
+  console.log(pathname)
   let [isPending, startTransition] = useTransition()
 
   return (

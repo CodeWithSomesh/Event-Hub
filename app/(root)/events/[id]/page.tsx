@@ -23,11 +23,37 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
           
         {/*Event Details */}
         <div className="grid grid-cols-1 md:grid-cols-[45%_55%] md:max-w-7xl">
+<<<<<<< Updated upstream
           {/*Event Image */}
           <Image 
             src={event.imageUrl} alt="hero image" width={1000}
             height={1000} className="h-full min-h-[300px] object-cover object-center"
           />
+=======
+          <div className="relative">
+            {/*Event Image */}
+            <Image 
+              src={event.imageUrl} alt="hero image" width={1000}
+              height={1000} className="h-full min-h-[300px] object-cover object-center"
+            />
+
+            {/* If the user is the event organizer, then Update & Delete buttons will be displayed */}
+            {isEventCreator && (
+              <div className="absolute right-3 top-6 flex rounded-xl bg-white shadow-sm transition-all">
+
+                <Link href={`/events/${event?._id}/update`} className='p-3 rounded-xl hover:scale-110 hover:border-4 hover:border-primary' >
+                  <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
+                </Link>
+                
+                <div className=''>
+                  <DeleteConfirmation eventId={event?._id} />
+                </div>
+
+              </div>
+            )}
+          </div>
+          
+>>>>>>> Stashed changes
 
           <div className="flex w-full flex-col gap-8 p-5 md:px-8">
             <div className="flex flex-col gap-6">
