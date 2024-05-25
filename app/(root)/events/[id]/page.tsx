@@ -119,7 +119,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
               <div className='mt-4'>
                 <p className="p-bold-20 text-grey-600">Share : </p>
-                <ShareLink />
+                <ShareLink event={event} />
               </div>
 
               <div className='mt-4'>
