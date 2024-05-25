@@ -145,7 +145,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                 <div className=''>
                   <p className=" p-regular-16 text-gray-400">Number of Tickets</p>
                   <p className="text-xl font-medium">
-                    {Math.round(Number(order.totalAmount) / Number(event.price))} tickets
+                    {order.numOfTickets} tickets
                   </p>
                 </div> 
               </div>
@@ -155,7 +155,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                   <p className="p-semibold-20 text-gray-400">Total Price:</p>
                   <div className='flex justify-between border-y-2 border-black py-2 p-bold-24 text-primary'>
                     <p className="">RM</p>
-                    <p className=''>{Number(order.totalAmount).toLocaleString()}</p>
+                    <p className=''>{Number(order.totalPrice).toLocaleString()}</p>
                   </div>
               </div>
 

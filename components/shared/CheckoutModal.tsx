@@ -83,7 +83,7 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
                         <div className="flex justify-between gap-4 items-center">
                             <p className="text-lg">RM {Math.round(Number(event.price)).toString()} x {ticketsNum} {Number(ticketsNum) > 1 ? 'tickets' : 'ticket'}</p>
                             
-                            <p className="text-3xl font-bold underline">RM {Number(ticketsNum) * Number(event.price)}</p>
+                            <p className="text-3xl font-bold underline">RM {Number(Number(ticketsNum) * Number(event.price)).toLocaleString()}</p>
                         </div>
                     </ModalBody>
                     <ModalFooter>

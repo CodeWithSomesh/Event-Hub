@@ -5,7 +5,8 @@ export interface IOrder extends Document {
   createdAt: Date
   stripeId: string
   totalPrice: string
-  numOfTickets: number
+  numOfTickets: string
+  price: string
   event: {
     _id: string
     eventTitle: string
@@ -21,7 +22,8 @@ export interface IOrder extends Document {
 export type IOrderItem = {
   _id: string
   totalPrice: string
-  numOfTickets: number
+  price: string
+  numOfTickets: string
   createdAt: Date
   eventTitle: string
   eventId: string
@@ -39,8 +41,11 @@ const OrderSchema = new Schema({
     required: true,
     unique: true,
   },
+  price: {
+    type: String,
+  },
   numOfTickets: {
-    type: Number,
+    type: String,
   },
   totalPrice: {
     type: String,
