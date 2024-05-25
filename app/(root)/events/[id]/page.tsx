@@ -118,7 +118,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               </div>
 
               <div className='mt-4'>
-                <p className="p-bold-20 text-grey-600">Share : </p>
+                <p className="p-bold-20 text-grey-600">Share Via : </p>
                 <ShareLink event={event} />
               </div>
 
