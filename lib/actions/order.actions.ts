@@ -15,7 +15,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
   // If users select free then price is 0, 
   // if not take the price user given and x100 because Stripe take the money in cents 
-  const price = order.isFree ? 0 : Number(order.totalPrice) * 100;
+  const price = order.isFree ? 0 : Number(order.price) * 100;
 
   try {
     // Create Checkout Sessions from body params
@@ -29,7 +29,12 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
               name: order.eventTitle
             }
           },
-          quantity: 1
+          adjustable_quantity: {
+            enabled: true,
+            minimum: 0,
+            maximum: 10000,
+          },
+          quantity: order.numOfTickets
         },
       ],
       metadata: {
@@ -58,7 +63,7 @@ export const createOrder = async (order: CreateOrderParams) => {
       event: order.eventId,
       buyer: order.buyerId,
     });
-
+    console.log(order.numOfTickets)
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {
     handleError(error);
@@ -100,7 +105,7 @@ export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEve
       {
         $project: {
           _id: 1,
-          totalAmount: 1,
+          totalPrice: 1,
           createdAt: 1,
           eventTitle: '$event.eventTitle',
           eventId: '$event._id',

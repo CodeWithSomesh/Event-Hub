@@ -7,6 +7,7 @@ export async function POST(request: Request) {
 
   const signature = request.headers.get('stripe-signature') as string
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
   let event
 
@@ -21,15 +22,22 @@ export async function POST(request: Request) {
 
   // Create an order if the eventType is as below
   if (eventType === 'checkout.session.completed') {
-    const { id, amount_total, metadata } = event.data.object
+    const { id, amount_total, metadata, line_items } = event.data.object
+    // Retrieve the Checkout Session with expand
+    const session = await stripe.checkout.sessions.retrieve(id, {
+      expand: [ "line_items" ]
+    });
 
     const order = {
       stripeId: id,
       eventId: metadata?.eventId || '',
       buyerId: metadata?.buyerId || '',
-      totalAmount: amount_total ? (amount_total / 100).toString() : '0',
+      totalPrice: amount_total ? (amount_total / 100).toString() : '0',
+      numOfTickets: line_items[0].quantity,
       createdAt: new Date(),
     }
+
+    
 
     const newOrder = await createOrder(order)
     return NextResponse.json({ message: 'OK', order: newOrder })

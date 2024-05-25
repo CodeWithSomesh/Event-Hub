@@ -66,7 +66,7 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
                     <>
                     <ModalHeader className="flex justify-between">
                         <p className="font-bold">{event.isFree ? 'Get Ticket' : 'Buy Ticket'}</p>
-                        <p className="text-primary">RM {event.price}
+                        <p className="text-primary">RM {Math.round(Number(event.price)).toString()}
                             <span className="text-black text-lg"> /ticket</span>
                         </p>
                     </ModalHeader>
@@ -81,7 +81,7 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
                             />
                         </div>
                         <div className="flex justify-between gap-4 items-center">
-                            <p className="text-lg">RM {event.price} x {ticketsNum} {Number(ticketsNum) > 1 ? 'tickets' : 'ticket'}</p>
+                            <p className="text-lg">RM {Math.round(Number(event.price)).toString()} x {ticketsNum} {Number(ticketsNum) > 1 ? 'tickets' : 'ticket'}</p>
                             
                             <p className="text-3xl font-bold underline">RM {Number(ticketsNum) * Number(event.price)}</p>
                         </div>
