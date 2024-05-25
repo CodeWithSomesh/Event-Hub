@@ -16,7 +16,7 @@ const ShareLink = ({event} : {event : IEvent}) => {
   const currentPageURL = window.location.href
 
   return (
-    <div className="flex gap-3 mt-1">
+    <div className="flex gap-3 mt-[6px]">
         {/* Email Button */}
         <EmailShareButton url={currentPageURL} 
             className="hover:scale-125"
@@ -34,21 +34,6 @@ const ShareLink = ({event} : {event : IEvent}) => {
             <EmailIcon round={true} size={48} bgStyle={{fill: "#3EE7A1"}} />
         </EmailShareButton>
 
-        {/* Facebook Button */}
-        <FacebookShareButton url="www.google.com" className="hover:scale-125">
-            <FacebookIcon round={true} size={46}  />
-        </FacebookShareButton>
-
-        {/* Linked In Button */}
-        <LinkedinShareButton url="www.google.com" className="hover:scale-125">
-            <LinkedinIcon round={true} size={46}  />
-        </LinkedinShareButton>
-
-        {/* Telegram Button */}
-        <TelegramShareButton url="www.google.com" className="hover:scale-125">
-            <TelegramIcon round={true} size={46}  />
-        </TelegramShareButton>
-
         {/* Twitter Button */}
         <TwitterShareButton url={`${'\n'} ${'\n'} ${currentPageURL} ${'\n'} ${'\n'}`} 
             className="hover:scale-125" 
@@ -58,8 +43,32 @@ const ShareLink = ({event} : {event : IEvent}) => {
             <TwitterIcon round={true} size={46}  />
         </TwitterShareButton>
 
-        {/* Twitter Button */}
-        <WhatsappShareButton url="www.google.com" className="hover:scale-125">
+        {/* Telegram Button */}
+        <TelegramShareButton url={currentPageURL} 
+            className="hover:scale-125"
+            title={`Guess what? I'm attending ${event.eventTitle} and I think you should too! 🎉 It's going to be an epic event with lots of fun and excitement. Grab your tickets with this link. Let's enjoy it together!`}
+        >
+            <TelegramIcon round={true} size={46}  />
+        </TelegramShareButton>
+
+
+        {/* Facebook Button */}
+        <FacebookShareButton url={currentPageURL}
+            className="hover:scale-125"
+        >
+            <FacebookIcon round={true} size={46}  />
+        </FacebookShareButton>
+
+        {/* Linked In Button */}
+        <LinkedinShareButton url={currentPageURL} className="hover:scale-125">
+            <LinkedinIcon round={true} size={46}  />
+        </LinkedinShareButton>
+
+        {/* WhatsApp Button */}
+        <WhatsappShareButton url={currentPageURL}
+            className="hover:scale-125"
+            title={`Hey! I'm going to ${event.eventTitle} and I'd love for you to come along! It's going to be a blast! 🎉 Can't wait to see you there! 🥳 ${'\n\n'}Grab your tickets here:${'\n'}`}
+        >
             <WhatsappIcon round={true} size={46}  />
         </WhatsappShareButton>
     </div>
