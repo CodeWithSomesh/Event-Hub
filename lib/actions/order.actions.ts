@@ -34,12 +34,15 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
             minimum: 0,
             maximum: 10000,
           },
-          quantity: order.numOfTickets
+          quantity: Number(order.numOfTickets)
         },
       ],
       metadata: {
         eventId: order.eventId,
         buyerId: order.buyerId,
+        price: order.price,
+        numOfTickets: order.numOfTickets,
+        totalPrice: order.totalPrice,
       },
       mode: 'payment',
       success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
@@ -63,7 +66,7 @@ export const createOrder = async (order: CreateOrderParams) => {
       event: order.eventId,
       buyer: order.buyerId,
     });
-    console.log(order.numOfTickets)
+
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {
     handleError(error);

@@ -36,8 +36,8 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
             eventTitle: event.eventTitle,
             eventId: event._id,
             price: event.price,
-            numOfTickets: Number(ticketsNum),
-            totalPrice: (Number(event.price) * Number(ticketsNum)),
+            numOfTickets: ticketsNum,
+            totalPrice: (Number(event.price) * Number(ticketsNum)).toString(),
             isFree: event.isFree,
             buyerId: userId
         }

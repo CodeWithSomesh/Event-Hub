@@ -108,8 +108,8 @@ export type CreateEventParams = {
     eventTitle: string
     eventId: string
     price: string
-    numOfTickets: number
-    totalPrice: number
+    numOfTickets: string
+    totalPrice: string
     isFree: boolean
     buyerId: string
   }
@@ -118,7 +118,8 @@ export type CreateEventParams = {
     stripeId: string
     eventId: string
     buyerId: string
-    numOfTickets: number
+    price: string
+    numOfTickets: string
     totalPrice: string
     createdAt: Date
   }
