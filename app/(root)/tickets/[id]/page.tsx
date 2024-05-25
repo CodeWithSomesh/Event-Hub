@@ -10,6 +10,7 @@ import Image from 'next/image'
 import React from 'react'
 
 import { DeleteConfirmation } from '@/components/shared/DeleteConfirmation'
+import ShareLink from '@/components/shared/ShareLink'
 
 const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
   // Getting the ID of an user 
@@ -235,6 +236,11 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                   Organized by{' '}
                   <span className="text-primary-500 p-medium-20">{event.organizer.firstName} {event.organizer.lastName}</span>
                 </p>
+              </div>
+
+              <div className='mt-4'>
+                <p className="p-bold-20 text-grey-600">Share Via : </p>
+                <ShareLink event={event} />
               </div>
 
               <div className='mt-4'>
