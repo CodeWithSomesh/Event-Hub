@@ -138,7 +138,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                 <div className=''>
                   <p className=" p-regular-16 text-gray-400">Ticket Price</p>
                   <p className="text-xl font-medium break-words">
-                    RM {Math.round(Number(event.price)).toString()}
+                    RM {Math.round(Number(order.price)).toString()}
                   </p>
                 </div>
 
