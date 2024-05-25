@@ -54,7 +54,7 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
        <div className="flex gap-2 justify-between">
           {/*Event Price */}
           <span className="p-semibold-16 rounded-full bg-green-100 px-6 py-2 text-green-60">
-            {event?.isFree ? 'FREE' : `RM ${event?.price}`}
+            {event?.isFree ? 'FREE' : `RM ${Math.round(Number(event.price)).toString()}`}
           </span>
           {/*Event Category */}
           <p className="p-semibold-14 rounded-full bg-grey-500/10 px-6 py-2 text-grey-500 line-clamp-1 flex items-center ">

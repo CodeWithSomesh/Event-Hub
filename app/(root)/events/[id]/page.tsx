@@ -65,7 +65,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                   {/*Event Price & Category */}
                 <div className="flex gap-3 items-center">
                   <p className="p-bold-20 rounded-full bg-green-500/10 px-6 py-4 text-green-700">
-                    {event.isFree ? 'FREE' : `RM ${event.price}`}
+                    {event.isFree ? 'FREE' : `RM ${(Math.round(Number(event.price))).toString()}`}
                   </p>
                   <p className="p-medium-18 font-semibold rounded-full bg-grey-500/10 px-6 py-4 text-grey-500">
                     {event.category.name}

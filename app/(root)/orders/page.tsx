@@ -52,7 +52,7 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
                         {formatDateTime(row.createdAt).dateTime}
                       </td>
                       <td className="min-w-[100px] py-4 text-right">
-                        {formatPrice(row.totalAmount)}
+                        {formatPrice(row.totalPrice)}
                       </td>
                     </tr>
                   ))}
