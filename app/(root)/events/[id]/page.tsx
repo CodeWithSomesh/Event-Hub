@@ -9,6 +9,7 @@ import React from 'react'
 import { auth } from '@clerk/nextjs/server'
 import Link from 'next/link'
 import {DeleteConfirmation} from '@/components/shared/DeleteConfirmation'
+import ShareLink from '@/components/shared/ShareLink'
 
 const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
   // Getting Event by their ID
@@ -117,10 +118,15 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               </div>
 
               <div className='mt-4'>
+                <p className="p-bold-20 text-grey-600">Share : </p>
+                <ShareLink />
+              </div>
+
+              <div className='mt-4'>
                 <p className="p-bold-20 text-grey-600">Find Out More At : </p>
                 <p className="p-medium-16 lg:p-regular-18 truncate text-primary-500 underline">{event.url}</p>
               </div>
-              
+
               <div className='mt-4'>
                 <p className="p-bold-20 text-grey-600 mb-2">What You&apos;ll Learn &#58;</p>
                 <p className="p-medium-16 lg:p-regular-18 text-justify">{event.description}</p> 
