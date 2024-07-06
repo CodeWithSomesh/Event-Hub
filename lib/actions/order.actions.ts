@@ -170,7 +170,7 @@ const populateOrder = async(query:any) => {
 }
 
 // GET ONLY ONE ORDER BY ID
-export const getOrderById = async (eventID: string, userId: string) => {
+export const getOrderById = async (orderID: string) => {
 
   try{
       
@@ -178,14 +178,14 @@ export const getOrderById = async (eventID: string, userId: string) => {
       await connectToDatabase();
 
       // Finding an Order by its ID, then populate it
-      const order = await populateOrder(Order.findById(eventID))
+      const order = await populateOrder(Order.findById(orderID))
 
       // If there is no such event then display this error
       if (!order){
           throw new Error('Order by the given ID is not found in Database')
       }
 
-      console.log(order)
+      //console.log(order)
 
       return JSON.parse(JSON.stringify(order));
   } catch (error) {

@@ -2,7 +2,7 @@
 
 import mongoose from  'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI; // Connecting to MongoDB URI with password
+const MONGODB_URI = process.env.MONGODB_URI; // Connecting to MongoDB URI with MongoDB Connection String
 
 // Initializing cached variable 
 let cached = (global as any).mongoose || {connection: null, promise: null}

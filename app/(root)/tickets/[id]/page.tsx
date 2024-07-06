@@ -18,7 +18,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
   const userId = sessionClaims?.userId as string;
 
   
-  const order = await getOrderById(id, userId)
+  const order = await getOrderById(id)
   const event = await getEventById(order.event._id)
 
   const relatedEvents = await getRelatedEventsByCategory({
