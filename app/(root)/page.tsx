@@ -25,20 +25,20 @@ export default async function Home() {
         {/* Hero Section Title */}
         <HoverHeader home={true} />
 
-        <section className="bg-contain pt-2 pb-5 md:pb-8 w-full">
+        <section className="bg-contain pt-2 pb-5 md:pb-5 w-f">
 
-          <div className="wrapper grid gap-5">
+          <div className="wrapper sm:grid gap-5 ">
       
             {/* Carousel Slider */}
-            <Carousel>
+            <Carousel className="md:px-10">
               <CarouselContent>
                 {eventImages.map(event => (
-                  <CarouselItem key={event.src} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1">
+                  <CarouselItem key={event.src} className="md:basis-1/2 xl:basis-1/3 basis-1/1 w-[70%] md:w-full">
+                    <div className="sm:px-1">
                       <Card>
-                        <CardContent className="flex aspect-square p-4 border-4 border-black rounded-md relative">
+                        <CardContent className="flex aspect-square p-0 sm:p-4 border-4 border-black rounded-md relative">
                           <Image src={event.src} alt="Event Images" width={1000} height={1000} className="object-cover object-bottom rounded-md"/>
-                          <p className="absolute opacity-100 hover:opacity-0 bg-white py-2 px-3 rounded-md bottom-6 right-6 font-medium text-lg border-2 border-slate-300">
+                          <p className="absolute opacity-0 md:opacity-100 hover:opacity-0 bg-white py-2 px-3 rounded-md bottom-6 right-6 font-medium lg:text-lg border-2 border-slate-300 ">
                             {event.type}
                           </p>
                         </CardContent>
@@ -47,12 +47,12 @@ export default async function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="scale scale-150 border-primary border-4"/>
-              <CarouselNext className="scale scale-150 border-primary border-4"/>
+              <CarouselPrevious className="sm:flex hidden scale scale-150 border-primary border-4 ml-10"/>
+              <CarouselNext className="sm:flex hidden scale scale-150 border-primary border-4 mr-10"/>
             </Carousel>
 
             {/* Hero Section Desc */}
-            <div className="flex justify-between items-center mb-6 mt-4">
+            <div className="justify-between items-center mb-6 mt-4 hidden lg:flex">
               <div>
                 <q className="p-semibold-18 md:p-semibold-20">
                   Life's too short for boring weekends. <br />
@@ -71,7 +71,7 @@ export default async function Home() {
             </div>
 
             {/* Hero Section Desc */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="hidden lg:flex justify-between items-center mb-6">
                 
               <div className="flex justify-center items-center gap-2">
                 <Image src='/assets/images/nst-logo.webp' alt="Event Images" width={130} height={130} className="object-cover object-bottom rounded-md border-4"/>
@@ -89,8 +89,8 @@ export default async function Home() {
             </div>
 
             {/* Hero Section Explore Button */}
-            <Link href="/events">
-              <Button className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary"> 
+            <Link href="/events" className="">
+              <Button className="bg-primary sm:mx-0 font-bold text-lg sm:text-2xl py-8 w-full mx-auto px-8 place-self-center hover:bg-black hover:text-primary mt-8 md:mt-3"> 
                   Explore Now
               </Button>
             </Link>

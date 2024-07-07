@@ -35,21 +35,23 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
       <section className="flex justify-center bg-dotted-pattern bg-contain border-b md:py-8">
           
         {/*Ticket Details */}
-        <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-8 md:max-w-7xl md:w-full">
+        <div className="grid grid-cols-1 md:grid-cols-[40%_60%] sm:gap-8 gap-0 md:max-w-7xl md:w-full">
 
-          <div className='mx-auto my-5 md:my-8 flex flex-col justify-between'>
-            <div>
+          <div className='mx-auto my-5 md:my-8 flex flex-col justify-between wrapper '>
+            <div className="flex flex-col justify-center items-center">
               {/*Ticket QR Code Image*/}
               <img 
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event.eventTitle}`} 
-                alt="hero image" className="min-h-[450px] mb-6 border-8 p-2 border-primary rounded-md"
+                alt="hero image" className="md:min-h-[450px] mb-6 border-8 p-2 border-primary rounded-md"
               />
               {/*Ticket ID*/}
               <p className="font-normal text-center">Ticket ID: {order._id}</p>
             </div>
 
             {/*Delete Ticket Button*/}
-            <DeleteConfirmation orderId={order._id} />
+            <div className=''>
+              <DeleteConfirmation orderId={order._id} />
+            </div>
 
           </div>
 
@@ -76,7 +78,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               </div>
 
               {/*Event Dates  */}
-              <div className="grid grid-cols-[55%_45%] gap-6 mt-2 justify-between">
+              <div className="grid grid-cols-[50%_45%] gap-6 mt-2 justify-between">
                 <div className=''>
                   <p className=" p-regular-16 text-gray-400">Event Start Date</p>
                   <p className="text-xl font-medium">
@@ -98,7 +100,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               <div className='border-2 border-primary border-dashed my-4'></div>
 
               {/*Participant Name & ID  */}
-              <div className="grid grid-cols-[55%_45%] gap-6 justify-between">
+              <div className="grid grid-cols-[50%_45%] gap-6 justify-between">
                 <div className=''>
                   <p className=" p-regular-16 text-gray-400">Participant Name</p>
                   <p className="text-xl font-medium">
@@ -108,14 +110,14 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
                 <div className=''>
                   <p className=" p-regular-16 text-gray-400">Participant ID</p>
-                  <p className="text-xl font-medium">
+                  <p className="text-xl font-medium  break-words">
                     {order.buyer._id}
                   </p>
                 </div> 
               </div>
 
               {/*Participant Email & Purchase Ticket Date  */}
-              <div className="grid grid-cols-[55%_45%] gap-6 justify-between ">
+              <div className="grid grid-cols-[50%_45%] gap-6 justify-between ">
                 <div className=''>
                   <p className=" p-regular-16 text-gray-400">Participant Email</p>
                   <p className="text-xl font-medium break-words">
@@ -135,7 +137,7 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               <div className='border-2 border-primary border-dashed my-4'></div>
 
               {/*Single Ticket Price & Number Of Tickets */}
-              <div className="grid grid-cols-[55%_45%] gap-6 justify-between ">
+              <div className="grid grid-cols-[50%_45%] gap-6 justify-between ">
                 <div className=''>
                   <p className=" p-regular-16 text-gray-400">Ticket Price</p>
                   <p className="text-xl font-medium break-words">
@@ -152,8 +154,8 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               </div>
 
               {/*Participant Email & Purchase Ticket Date  */}
-              <div className="grid grid-cols-[55%_45%] gap-6 mt-4 justify-between items-center">
-                  <p className="p-semibold-20 text-gray-400">Total Price:</p>
+              <div className="grid grid-cols-[45%_55%] sm:grid-cols-[50%_45%] gap-6 mt-4 justify-between items-center">
+                  <p className="sm:p-semibold-20 p-semibold-16 text-gray-400">Total Price:</p>
                   <div className='flex justify-between border-y-2 border-black py-2 p-bold-24 text-primary'>
                     <p className="">RM</p>
                     <p className=''>{Number(order.totalPrice).toLocaleString()}</p>
@@ -183,9 +185,9 @@ const TicketDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               {/*Event Title */}
               <h2 className='h2-bold'>{event.eventTitle}</h2>
 
-              <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+              <div className="flex flex-col  justify-between gap-3 sm:flex-row sm:items-center">
                   {/*Event Price & Category */}
-                <div className="flex gap-3 items-center">
+                <div className="flex gap-3 items-center justify-between sm:justify-normal">
                   <p className="p-bold-20 rounded-full bg-green-500/10 px-6 py-4 text-green-700">
                     {event.isFree ? 'FREE' : `RM ${(Math.round(Number(event.price))).toString()}`}
                   </p>

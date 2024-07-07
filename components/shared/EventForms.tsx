@@ -122,9 +122,9 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 md:gap-10">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-10 md:gap-10">
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="flex flex-col gap-10 md:flex-row">
             {/* Event Title Form */}
             <FormField
                 control={form.control}
@@ -172,7 +172,7 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
             />
         </div>
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="flex flex-col gap-10 md:flex-row">
           {/* Event Description Form */}
           <FormField
             control={form.control}
@@ -213,7 +213,7 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
         </div>
         
         {/* Event Location Form */}
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="flex flex-col gap-10 md:flex-row">
           <FormField
               control={form.control}
               name="location"
@@ -241,7 +241,7 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
         </div>
 
         
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="flex flex-col gap-10 md:flex-row">
 
           {/* Event Start Date Form */}
           <FormField
@@ -310,7 +310,7 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
             />
         </div>
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="flex flex-col gap-10 md:flex-row">
             {/* Event Price Form */}
             <FormField
                 control={form.control}
@@ -381,7 +381,7 @@ const EventForms = ({userId, type, event, eventId}: EventFormProps) => {
             />
         </div>
 
-        <Button type="submit" disabled={form.formState.isSubmitting} className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary">
+        <Button type="submit" disabled={form.formState.isSubmitting} className="bg-primary font-bold text-2xl py-8 w-full px-8 place-self-center hover:bg-black hover:text-primary sm:mt-0 mt-4">
           {form.formState.isSubmitting ? 'Submitting' : `${type} Event`}
         </Button>
       </form>

@@ -32,12 +32,12 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
       <section className="flex justify-center  bg-dotted-pattern bg-contain border-b">
           
         {/*Event Details */}
-        <div className="grid grid-cols-1 md:grid-cols-[45%_55%] md:max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] lg:max-w-7xl">
           <div className="relative">
             {/*Event Image */}
             <Image 
               src={event.imageUrl} alt="hero image" width={1000}
-              height={1000} className="h-full min-h-[300px] object-cover object-center"
+              height={1000} className="h-full min-h-[300px] object-cover object-center w-full"
             />
 
             {/* If the user is the event organizer, then Update & Delete buttons will be displayed */}
@@ -62,9 +62,9 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
               {/*Event Title */}
               <h2 className='h2-bold'>{event.eventTitle}</h2>
 
-              <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-                  {/*Event Price & Category */}
-                <div className="flex gap-3 items-center">
+              <div className="flex flex-col  justify-between gap-3 sm:flex-row sm:items-center">
+                {/*Event Price & Category */}
+                <div className="flex gap-3 items-center justify-between sm:justify-normal">
                   <p className="p-bold-20 rounded-full bg-green-500/10 px-6 py-4 text-green-700">
                     {event.isFree ? 'FREE' : `RM ${(Math.round(Number(event.price))).toString()}`}
                   </p>
@@ -74,7 +74,9 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                 </div>
 
 
-                <CheckoutButton event={event} />
+                <div className=''>
+                  <CheckoutButton event={event} />
+                </div>
                 
               </div>
             </div>
@@ -83,22 +85,28 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
 
             <div className="flex flex-col gap-5">
               {/*Event Start Date & End Date */}
-              <div className='flex gap-2 items-center mt-2'>
-                <Image src="/assets/icons/calendar2.svg" alt="calendar" width={32} height={32} />
+              <div className='flex gap-2 items-center mt-2 justify-between'>
+                <div className='flex gap-2'>
+                  <Image src="/assets/icons/calendar2.svg" alt="calendar" width={32} height={32} />
 
-                <p className="p-medium-18 flex flex-wrap md:flex-col items-center justify-center">
-                  {formatDateTime(event.startDateTime).dateOnly}, {' '}
-                  {formatDateTime(event.startDateTime).timeOnly} 
-                </p>
+                  <p className="p-medium-18 flex flex-wrap md:flex-col items-center justify-center">
+                    {formatDateTime(event.startDateTime).dateOnly}, {' '}
+                    {formatDateTime(event.startDateTime).timeOnly} 
+                  </p>
 
-                -
+                </div>
+
+                <p>-</p>
               
-                <Image src="/assets/icons/calendar2.svg" alt="calendar" width={32} height={32} />
+                <div className='flex gap-2'>
+                  <Image src="/assets/icons/calendar2.svg" alt="calendar" width={32} height={32} />
 
-                <p className="p-medium-18 flex flex-wrap md:flex-col items-center justify-center">
-                  {formatDateTime(event.endDateTime).dateOnly}, {' '}
-                  {formatDateTime(event.endDateTime).timeOnly}
-                </p>
+                  <p className="p-medium-18 flex flex-wrap md:flex-col items-center justify-center">
+                    {formatDateTime(event.endDateTime).dateOnly}, {' '}
+                    {formatDateTime(event.endDateTime).timeOnly}
+                  </p>
+                </div>
+
               </div>
 
               {/*Event Location */}
@@ -122,7 +130,7 @@ const EventDetails = async({params: {id}, searchParams}: SearchParamProps) => {
                 <ShareLink event={event} />
               </div>
 
-              <div className='mt-4'>
+              <div className='mt-6'>
                 <p className="p-bold-20 text-grey-600">Find Out More At : </p>
                 <p className="p-medium-16 lg:p-regular-18 truncate text-primary-500 underline">{event.url}</p>
               </div>

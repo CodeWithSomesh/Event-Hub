@@ -48,7 +48,7 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
 
   return (
     <>
-        <Button onPress={onOpen}  className="bg-primary text-white rounded-md text-lg md:text-2xl font-bold px-4 py-7 hover:bg-black hover:text-primary sm:w-fit'">
+        <Button onPress={onOpen}  className="bg-primary text-white rounded-md text-lg md:text-2xl font-bold px-4 py-7 hover:bg-black hover:text-primary w-full sm:w-fit">
             Buy Ticket
         </Button>
         <Modal 
@@ -61,7 +61,7 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
                 header: "border-b-[1px] border-[#292f46] text-2xl",
                 closeButton: "hover:bg-black/20 active:bg-black/10 hidden",
         }}>
-            <ModalContent className="w-[35%] bg-white rounded-md">
+            <ModalContent className="w-[35%] max-w-[500px] min-w-[320px] min-h-[360px] max-h-[450px] bg-white rounded-md sm:mt-0 my-auto">
                 {(onClose) => (
                     <>
                     <ModalHeader className="flex justify-between">
@@ -71,23 +71,23 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
                         </p>
                     </ModalHeader>
                     <ModalBody>
-                        <div className="flex justify-between gap-4 items-center mt-4 mb-10">
+                        <div className="sm:flex grid justify-between gap-4 items-center mt-4 mb-10">
                             <p className="text-lg">Number Of Tickets</p>
                             <Input
                                 type="number" onChange={e => setTicketsNum(e.target.value)}
                                 placeholder=" Tickets"
                                 variant="bordered"
-                                labelPlacement="inside" className="border-black border-2 rounded-lg w-[20%] flex-center overflow-hidden bg-primary-50"
+                                labelPlacement="inside" className="border-black border-2 rounded-lg sm:w-[20%]  flex-center overflow-hidden bg-primary-50"
                             />
                         </div>
-                        <div className="flex justify-between gap-4 items-center">
+                        <div className="sm:flex grid  justify-between gap-4 items-center">
                             <p className="text-lg">RM {Math.round(Number(event.price)).toString()} x {Math.round(Number(ticketsNum)).toString()} {Number(ticketsNum) > 1 ? 'tickets' : 'ticket'}</p>
                             
                             <p className="text-3xl font-bold underline">RM {Number(Math.round(Number(ticketsNum)) * Math.round(Number(event.price))).toLocaleString()}</p>
                         </div>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="danger" onPress={onClose} className="bg-primary-50 border-2 border-black rounded-md text-lg md:text-xl font-bold py-6  hover:bg-red-500 hover:text-white sm:w-fit'">
+                    <ModalFooter className="w-full">
+                        <Button color="danger" onPress={onClose} className="bg-red-500  rounded-md text-lg md:text-xl font-bold py-6  hover:bg-red-700 text-white sm:w-fit'">
                             Cancel
                         </Button>
                         <Button color="primary" onPress={onCheckOut} className="bg-primary text-white rounded-md text-lg md:text-xl font-bold py-[26px]  hover:bg-black hover:text-primary sm:w-fit">

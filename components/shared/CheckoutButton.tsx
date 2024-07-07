@@ -25,8 +25,8 @@ const CheckoutButton = ({event} : {event : IEvent}) => {
         // If not, then display this button 
         <>
           <SignedOut> {/*If the user is signed out, then return sign in page */}
-            <Button asChild className="button rounded-full" size="lg">
-              <Link href="/sign-in">
+            <Button asChild className="button rounded-full text-xl font-bold w-full sm:w-fit" size="lg">
+              <Link href="/sign-in" className='text-lg font-bold'>
                 Get Tickets
               </Link>
             </Button>

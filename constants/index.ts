@@ -26,7 +26,7 @@ export const eventImages = [
         src: '/assets/images/event3.jpeg'
     },
     {
-        type: 'Ballerina Ballet Dance Show 2024',
+        type: 'Ballerina Ballet Dance Show',
         src: '/assets/images/event6.jpeg'
     },
     

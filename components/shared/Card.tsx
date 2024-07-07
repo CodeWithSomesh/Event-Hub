@@ -26,7 +26,7 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
       <Link 
         href={isTicket ? `/tickets/${order?._id}` : `/events/${event?._id}`} 
         style={isTicket ? {backgroundImage: `url(https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${event?.imageUrl})`} :{backgroundImage: `url(${event?.imageUrl})`}}
-        className={`flex-center flex-grow bg-no-repeat bg-center ${isTicket ? 'border-primary border-4 rounded-t-md':'bg-cover bg-gray-50  text-grey-500'}`}
+        className={`flex-center flex-grow bg-no-repeat bg-center min-h-[210px] ${isTicket ? 'border-primary border-4 rounded-t-md':'bg-cover bg-gray-50  text-grey-500'}`}
       />
 
       {/* If the user is the event organizer, then Update & Delete buttons will be displayed */}
@@ -47,7 +47,7 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
 
       {/* Conditional rendering: If not tickets then run this */}
       <Link href={isTicket ? `/tickets/${order?._id}` : `/events/${event?._id}`} 
-        className={`flex flex-col gap-3 p-5 md:gap-6 min-h-[250px]`}
+        className={`flex flex-col gap-6 sm:gap-3 p-5 md:gap-6 min-h-[250px]`}
       > 
 
        {!isTicket && 
@@ -64,7 +64,7 @@ const Card = ({ event, hasOrderLink, isTicket, order }: CardProps) => {
 
         {/*Event Title */}
         <Link href={isTicket ? `/tickets/${order?._id}` : `/events/${event?._id}`} >
-          <p className="p-semibold-16 md:p-semibold-20 flex-1 text-black truncate">{event?.eventTitle}</p>
+          <p className="p-semibold-20 md:p-semibold-20 flex-1 text-black truncate">{event?.eventTitle}</p>
         </Link>
 
         {/*Event Start Date */}

@@ -14,13 +14,13 @@ const HoverHeader = ({titlePlaceholder, buttonPlaceholder, home, link}: {titlePl
           <Boxes />
 
           <div className="bg-primary-50 z-10 max-w-7xl rounded-md mb-2">
-              <h1 className="h1-bold text-center text-whit">
+              <h1 className="sm:h1-bold h3-bold text-center">
                 {home ? 'Your Passport to Events Worldwide' : 'Exciting Events Awaits You'}
               </h1>
           </div>  
 
           <div className="bg-primary-50 z-10 max-w-7xl rounded-md">
-              <h1 className="h1-bold text-center text-primary">— Discover. Experience. Connect.</h1>
+              <h1 className="sm:h1-bold h3-bold text-center text-primary">— Discover. Experience. Connect.</h1>
           </div>  
         
       </div>
@@ -29,13 +29,13 @@ const HoverHeader = ({titlePlaceholder, buttonPlaceholder, home, link}: {titlePl
       {titlePlaceholder && (
         <>
           {buttonPlaceholder ? (
-            <div className="relative bg-primary-50 w-full overflow-hidden flex flex-col items-center justify-center rounded-lg py-8 md:py-16 self-stretch">
+            <div className="relative bg-primary-50 w-full overflow-hidden flex flex-col items-center justify-center rounded-lg py-2 sm:py-8 md:py-16 self-stretch">
               <div className="absolute inset-0 w-full h-full z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
     
               <Boxes />
     
-              <div className="wrapper flex items-center justify-center sm:justify-between">
-                <h1 className={`${titlePlaceholder ? "h3-bold text-white bg-black hover:text-primary z-10 max-w-7xl p-5 md:px-10 rounded-md" : ""}`}>
+              <div className="wrapper sm:flex grid gap-4 items-center justify-center sm:justify-between">
+                <h1 className={`${titlePlaceholder ? "h3-bold text-white bg-black hover:text-primary z-10 max-w-7xl p-5 md:px-10 rounded-md text-center" : ""}`}>
                   {titlePlaceholder}
                 </h1>
                 
