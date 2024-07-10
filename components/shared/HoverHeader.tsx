@@ -29,7 +29,7 @@ const HoverHeader = ({titlePlaceholder, buttonPlaceholder, home, link}: {titlePl
       {titlePlaceholder && (
         <>
           {buttonPlaceholder ? (
-            <div className="relative bg-primary-50 w-full overflow-hidden flex flex-col items-center justify-center rounded-lg py-2 sm:py-8 md:py-16 self-stretch">
+            <div className="relative bg-primary-50 w-full overflow-hidden flex flex-col items-center justify-center rounded-lg py-2 sm:py-8 md:py-16 self-stretch border-y border-gray-400 ">
               <div className="absolute inset-0 w-full h-full z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
     
               <Boxes />

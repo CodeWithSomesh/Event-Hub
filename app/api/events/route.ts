@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { createEvent, getEventById, updateEvent, deleteEvent, getAllEvents } from '@/lib/actions/event.actions';
 import { handleError } from '@/lib/utils';
 
-export async function GET(request: Request) {
+export async function GET(request: Request) { // Fetch All Events in DB
   try {
     const { searchParams, pathname } = new URL(request.url);
 

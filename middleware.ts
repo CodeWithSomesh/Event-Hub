@@ -7,6 +7,7 @@ import {
     '/dashboard(.*)',
     '/forum(.*)',
     '/events/publish',
+    '/profile',
   ]);
    
   export default clerkMiddleware((auth, req) => {

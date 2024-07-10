@@ -61,7 +61,7 @@ export default function CheckoutModal({event, userId} : {event: IEvent, userId: 
                 header: "border-b-[1px] border-[#292f46] text-2xl",
                 closeButton: "hover:bg-black/20 active:bg-black/10 hidden",
         }}>
-            <ModalContent className="w-[35%] max-w-[500px] min-w-[320px] min-h-[360px] max-h-[450px] bg-white rounded-md sm:mt-0 my-auto">
+            <ModalContent className="w-[35%] max-w-[500px] min-w-[320px] min-h-[360px] max-h-[450px] bg-white rounded-md my-auto">
                 {(onClose) => (
                     <>
                     <ModalHeader className="flex justify-between">
